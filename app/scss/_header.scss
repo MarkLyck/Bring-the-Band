@@ -14,10 +14,14 @@ header {
       background: darken($primary-color, 5%);
     }
   }
-  #logo {
-    width: auto;
-    padding: 0 20px;
+  .wrapper {
+    display: flex;
+    #logo {
+      width: auto;
+      padding: 0 20px;
+    }
   }
+
   nav {
     height: 100%;
     display: flex;

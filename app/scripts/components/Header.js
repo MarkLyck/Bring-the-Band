@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router'
 
 import store from '../store'
+import SearchBar from './SearchBar'
 
 const Header = React.createClass({
   getInitialState: function() {
@@ -31,7 +32,10 @@ const Header = React.createClass({
 
     return (
       <header>
+        <div className="wrapper">
         <Link to="/" id="logo">BringTheBand</Link>
+        <SearchBar/>
+        </div>
         {navLinks}
       </header>
     )
