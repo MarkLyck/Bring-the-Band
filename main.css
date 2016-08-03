@@ -408,9 +408,11 @@ header {
     width: 100px; }
     header a:hover {
       background: #0093e6; }
-  header #logo {
-    width: auto;
-    padding: 0 20px; }
+  header .wrapper {
+    display: flex; }
+    header .wrapper #logo {
+      width: auto;
+      padding: 0 20px; }
   header nav {
     height: 100%;
     display: flex;
