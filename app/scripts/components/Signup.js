@@ -13,13 +13,18 @@ const Signup = React.createClass({
     let password = this.refs.password.value
     store.session.signup(username, password)
   },
+  checkIfEnter: function(e) {
+    if (e.which === 13) {
+      this.login()
+    }
+  },
   render: function() {
     return (
       <Modal>
         <div className="form-modal">
         <h3>Signup</h3>
           <input type="text" placeholder="Username" ref="username"/>
-          <input type="password" placeholder="Password" ref="password"/>
+          <input onKeyUp={this.checkIfEnter} type="password" placeholder="Password" ref="password"/>
           <button onClick={this.signup} id="submit-btn">Signup</button>
         </div>
       </Modal>
