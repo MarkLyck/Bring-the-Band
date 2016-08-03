@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import Backbone from 'backbone'
 import {hashHistory} from 'react-router'
 
@@ -49,11 +50,19 @@ const Session = Backbone.Model.extend({
       }
     })
   },
+  logout: function() {
+    $.ajax({
+      type: 'POST',
+      url: `https://baas.kinvey.com/user/${store.settings.appKey}/_logout`,
+    })
+    localStorage.removeItem('authtoken')
+    this.clear()
+  },
   retrieve: function() {
     this.fetch({
       url: `https://baas.kinvey.com/user/${store.settings.appKey}/_me`,
       success: function() {
-        
+
       },
       error: function(response) {
         throw new Error('FETCHING USER FAILED!')
