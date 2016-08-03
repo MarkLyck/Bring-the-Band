@@ -6,6 +6,7 @@ import Band from '../models/Band'
 const SearchBands = Backbone.Collection.extend({
   model: Band,
   searchFor: function(term) {
+    console.log('SEARCHING...');
     $.ajax({
       url: `https://api.spotify.com/v1/search`,
       data: {

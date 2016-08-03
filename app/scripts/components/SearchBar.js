@@ -1,11 +1,16 @@
 import React from 'react'
 import {hashHistory} from 'react-router'
 
+import store from '../store'
+
 const SearchBar = React.createClass({
   searchFor: function(e) {
     e.preventDefault()
-    console.log('search for: ', this.refs.searchBar.value);
-    hashHistory.push('/search/' + this.refs.searchBar.value);
+    let searchTerm = this.refs.searchBar.value
+    console.log('search for: ', searchTerm);
+    hashHistory.push('/search/' + searchTerm);
+    store.searchBands.reset()
+    store.searchBands.searchFor(searchTerm)
   },
   render: function() {
     return (

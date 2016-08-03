@@ -18,7 +18,6 @@ const SearchPage = React.createClass({
     this.setState({bands: store.searchBands.toJSON()})
   },
   render: function() {
-    console.log(this.state.bands);
     let bandList;
     if (this.state.bands[0]) {
       bandList = this.state.bands.map((band, i) => {
