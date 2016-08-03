@@ -16,25 +16,19 @@ const Session = Backbone.Model.extend({
       return {
         authtoken: response._kmd.authtoken,
         username: response.username,
-        userId: response._id
+        userId: response._id,
+        votedFor: response.votedFor
       }
     }
   },
   addVoteFor: function(id) {
-    console.log('ADDING VOTE');
+    console.log('ADDING VOTE for: ', id);
 
     let votedFor = this.get('votedFor')
     votedFor.push(id)
     this.set('votedFor', votedFor)
 
-    // let realId = store.voteBands.data.getRealID(id)
-    // let bandToVoteFor = store.voteBands.data.get(realId)
-    // let votes = bandToVoteFor.get('votes')
-    // votes++
-    // bandToVoteFor.set('votes', votes)
-    // bandToVoteFor.save()
-    // this.updateUser()
-    // console.log('VOTED FOR: ', bandToVoteFor);
+    this.updateUser()
   },
   removeVoteFrom: function(id) {
     let votedFor = this.get('votedFor')
@@ -84,8 +78,8 @@ const Session = Backbone.Model.extend({
   retrieve: function() {
     this.fetch({
       url: `https://baas.kinvey.com/user/${store.settings.appKey}/_me`,
-      success: function() {
-
+      success: () => {
+          console.log('retrieved: ', this);
       },
       error: function(response) {
         throw new Error('FETCHING USER FAILED!')
@@ -93,10 +87,11 @@ const Session = Backbone.Model.extend({
     })
   },
   updateUser: function() {
+    console.log('SAVING USER');
     this.save(null, {
       type: 'PUT',
       url: `https://baas.kinvey.com/user/${store.settings.appKey}/${this.get('userId')}`,
-    }, {silent: true})
+    })
   }
 })
 

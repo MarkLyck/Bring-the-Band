@@ -41,7 +41,8 @@ const VoteBands = Backbone.Collection.extend({
           userName: store.session.get('username')
         }, {
           success: (voteResponse) => {
-            this.trigger('updateBand')
+            this.trigger('update')
+            store.session.addVoteFor(this.get('_id'))
           },
           error: function() {
             throw new Error('CREATING VOTE FAILED')
@@ -52,9 +53,7 @@ const VoteBands = Backbone.Collection.extend({
         throw new Error('CREATING BAND FAILED')
       }
     }, {wait: true})
-
-
-  }
+  },
 })
 
 export default VoteBands

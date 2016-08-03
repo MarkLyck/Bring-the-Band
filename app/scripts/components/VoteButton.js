@@ -6,11 +6,12 @@ const VoteButton = React.createClass({
   render: function() {
     let vote = 'vote'
     if (this.props.votes !== 1) {vote += 's'}
-
+    // 
+    // console.log(store.session.get('votedFor'));
     if (store.session.get('votedFor').indexOf(this.props.id) === -1) {
-      return (<button onClick={this.props.voteForAlbum} className="vote-button">{this.props.votes} {vote}</button>)
+      return (<button onClick={this.props.voteForBand} className="vote-button">{this.props.votes} {vote}</button>)
     } else {
-      return (<button onClick={this.props.removeVoteFromAlbum} className="remove vote-button">{this.props.votes} {vote}</button>)
+      return (<button className="remove vote-button">VOTED</button>)
     }
   }
 })
