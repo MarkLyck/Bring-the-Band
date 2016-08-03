@@ -399,7 +399,7 @@ header {
   justify-content: space-between;
   align-items: center;
   height: 75px;
-  background: #00a3ff; }
+  background: #000; }
   header a {
     display: flex;
     align-items: center;
@@ -407,7 +407,7 @@ header {
     height: 100%;
     width: 100px; }
     header a:hover {
-      background: #0093e6; }
+      background: black; }
   header .wrapper {
     display: flex; }
     header .wrapper #logo {
@@ -417,6 +417,22 @@ header {
     height: 100%;
     display: flex;
     align-items: center; }
+
+#band-list {
+  display: flex;
+  flex-wrap: wrap; }
+  #band-list .band-item {
+    width: calc(100% / 5 - 40px);
+    margin: 20px;
+    box-sizing: border-box; }
+    #band-list .band-item .cover {
+      width: 100%;
+      height: 200px;
+      background-repeat: no-repeat;
+      background-size: cover; }
+    #band-list .band-item .bottom-section {
+      display: flex;
+      justify-content: space-between; }
 
 a {
   text-decoration: none;
@@ -431,8 +447,8 @@ button, input {
   outline: none; }
 
 button {
-  background: #00a3ff;
+  background: #8700ff;
   border: none;
-  border-radius: 3px; }
+  color: #fff; }
 
 /*# sourceMappingURL=main.css.map */
