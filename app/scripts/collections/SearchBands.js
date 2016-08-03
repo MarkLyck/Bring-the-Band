@@ -10,10 +10,19 @@ const SearchBands = Backbone.Collection.extend({
       url: `https://api.spotify.com/v1/search`,
       data: {
         q: term,
-        type: 'album'
+        type: 'artist'
       },
-      success: function(response) {
+      success: (response) => {
         console.log(response);
+        response.artists.items.forEach(artist => {
+          if (artist.images[0]) {
+            this.add({
+              name: artist.name,
+              id: artist.id,
+              imgURL: artist.images[0].url
+            })
+          }
+        })
       },
       error: function(response) {
         console.log('ERROR: ', response);

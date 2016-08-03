@@ -1,0 +1,22 @@
+
+
+
+#band-list {
+  display: flex;
+  flex-wrap: wrap;
+  .band-item {
+    width: calc(100% / 5 - 40px);
+    margin: 20px;
+    box-sizing: border-box;
+    .cover {
+      width: 100%;
+      height: 200px;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .bottom-section {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

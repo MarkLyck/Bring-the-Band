@@ -1,6 +1,7 @@
 @import "../../node_modules/normalize-scss/sass/normalize/import-now";
 @import "variables";
 @import "header";
+@import "searchPage";
 
 a {
   text-decoration: none;
@@ -18,7 +19,7 @@ button, input {
 }
 
 button {
-  background: $primary-color;
+  background: $action-color;
   border: none;
-  border-radius: 3px;
+  color: #fff;
 }
