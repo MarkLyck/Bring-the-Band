@@ -6,18 +6,19 @@ import store from '../store'
 
 const BandItem = React.createClass({
   getInitialState: function() {
-    if (store.voteBands.data.getRealID(this.props.band.id)) {
-      let realId = store.voteBands.data.getRealID(this.props.band.id)
-      // return {band: store.voteBands.data.get(realId).toJSON(), votes: 0}
-      this.updateVotes()
-    }
+
     //  else {
     //   return {band: this.props.band, votes: 0}
     // }
     return {band: this.props.band, votes: 0}
   },
   componentDidMount: function() {
-      store.voteBands.data.on('update', this.updateVotes)
+    if (store.voteBands.data.getRealID(this.props.band.id)) {
+      let realId = store.voteBands.data.getRealID(this.props.band.id)
+      // return {band: store.voteBands.data.get(realId).toJSON(), votes: 0}
+      this.updateVotes()
+    }
+    store.voteBands.data.on('update', this.updateVotes)
   },
   updateVotes: function() {
     if (store.voteBands.data.getRealID(this.props.band.id)) {

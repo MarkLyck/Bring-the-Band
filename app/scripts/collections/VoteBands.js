@@ -34,6 +34,7 @@ const VoteBands = Backbone.Collection.extend({
       bandId: band.id
     }, {
       success: (bandResponse) => {
+        store.session.addVoteFor(bandResponse.get('_id'))
         let vote = new Vote()
 
         vote.save({
@@ -42,7 +43,6 @@ const VoteBands = Backbone.Collection.extend({
         }, {
           success: (voteResponse) => {
             this.trigger('update')
-            store.session.addVoteFor(this.get('_id'))
           },
           error: function() {
             throw new Error('CREATING VOTE FAILED')
