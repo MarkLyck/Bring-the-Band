@@ -450,5 +450,7 @@ button {
   background: #8700ff;
   border: none;
   color: #fff; }
+  button:hover {
+    cursor: pointer; }
 
 /*# sourceMappingURL=main.css.map */
