@@ -27,12 +27,14 @@ const Session = Backbone.Model.extend({
     votedFor.push(id)
     this.set('votedFor', votedFor)
 
-    let realId = store.voteBands.data.getRealID(id)
-    let bandToVoteFor = store.voteBands.data.get(realId)
-    let votes = bandToVoteFor.get('votes')
-    votes++
-    bandToVoteFor.set('votes', votes)
-    console.log('VOTED FOR: ', bandToVoteFor);
+    // let realId = store.voteBands.data.getRealID(id)
+    // let bandToVoteFor = store.voteBands.data.get(realId)
+    // let votes = bandToVoteFor.get('votes')
+    // votes++
+    // bandToVoteFor.set('votes', votes)
+    // bandToVoteFor.save()
+    // this.updateUser()
+    // console.log('VOTED FOR: ', bandToVoteFor);
   },
   removeVoteFrom: function(id) {
     let votedFor = this.get('votedFor')

@@ -6,8 +6,7 @@ const Band = Backbone.Model.extend({
   idAttribute: '_id',
   defaults: {
     name: '',
-    imgURL: '',
-    votes: 0
+    imgURL: ''
   }
 })
 
