@@ -5,8 +5,13 @@ import SearchBands from './collections/SearchBands'
 
 let store = {
   session: new Session(),
-  bands: new Bands(),
-  searchBands: new SearchBands(),
+  searchBands: {
+    data: new SearchBands(),
+    next: '',
+    prev: '',
+    offset: 0,
+    total: 0
+  },
   settings: {
     appKey: 'kid_HyAproyt',
     appSecret: '0d04b0e281504ed7a6c4d4b1d99783b5',

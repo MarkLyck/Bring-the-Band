@@ -16,7 +16,7 @@ const SearchBar = React.createClass({
     return (
       <form onSubmit={this.searchFor}>
         <input type="text" ref="searchBar"/>
-        <input type="submit"/>
+        <input type="submit" value="Search"/>
       </form>
     )
   }
