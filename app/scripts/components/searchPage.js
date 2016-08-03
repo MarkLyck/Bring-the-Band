@@ -9,10 +9,9 @@ const SearchPage = React.createClass({
   },
   componentDidMount: function() {
     store.searchBands.data.on('update', this.updateList)
-    if (this.props.params.searchTerm) {
-      let searchTerm = this.props.params.searchTerm
-      store.searchBands.data.searchFor(searchTerm)
-    }
+    let searchTerm = this.props.params.searchTerm
+    store.searchBands.data.searchFor(searchTerm)
+    store.voteBands.data.fetch()
   },
   updateList: function() {
     this.setState({bands: store.searchBands.data.toJSON()})

@@ -1,13 +1,12 @@
 import $ from 'jquery'
 import Backbone from 'backbone'
 
-import Band from '../models/Band'
+import SearchBand from '../models/SearchBand'
 import store from '../store/'
 
 const SearchBands = Backbone.Collection.extend({
-  model: Band,
+  model: SearchBand,
   searchFor: function(term) {
-    console.log('SEARCHING...');
     $.ajax({
       url: `https://api.spotify.com/v1/search`,
       data: {
@@ -15,7 +14,6 @@ const SearchBands = Backbone.Collection.extend({
         type: 'artist'
       },
       success: (response) => {
-        console.log(response);
         response.artists.items.forEach(artist => {
           if (artist.images[0]) {
             this.add({
@@ -29,9 +27,6 @@ const SearchBands = Backbone.Collection.extend({
         store.searchBands.next = response.artists.next
         store.searchBands.offset = 20
         store.searchBands.total = response.artists.total
-        // if (response.artists.previous) {
-        //   store.searchBands.prev = response.artists.previous
-        // }
       },
       error: function(response) {
         console.log('ERROR FETCHING FROM SERVER: ', response);

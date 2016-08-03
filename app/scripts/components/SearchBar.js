@@ -9,8 +9,8 @@ const SearchBar = React.createClass({
     let searchTerm = this.refs.searchBar.value
     console.log('search for: ', searchTerm);
     hashHistory.push('/search/' + searchTerm);
-    store.searchBands.reset()
-    store.searchBands.searchFor(searchTerm)
+    store.searchBands.data.reset()
+    store.searchBands.data.searchFor(searchTerm)
   },
   render: function() {
     return (

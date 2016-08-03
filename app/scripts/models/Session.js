@@ -9,6 +9,7 @@ const Session = Backbone.Model.extend({
   idAttribute: '_id',
   defaults: {
     username: '',
+    votedFor: []
   },
   parse: function(response) {
     if (response) {
@@ -18,6 +19,26 @@ const Session = Backbone.Model.extend({
         userId: response._id
       }
     }
+  },
+  addVoteFor: function(id) {
+    console.log('ADDING VOTE');
+
+    let votedFor = this.get('votedFor')
+    votedFor.push(id)
+    this.set('votedFor', votedFor)
+
+    let realId = store.voteBands.data.getRealID(id)
+    let bandToVoteFor = store.voteBands.data.get(realId)
+    let votes = bandToVoteFor.get('votes')
+    votes++
+    bandToVoteFor.set('votes', votes)
+    console.log('VOTED FOR: ', bandToVoteFor);
+  },
+  removeVoteFrom: function(id) {
+    let votedFor = this.get('votedFor')
+    voteIndex = votedFor.indexOf(id)
+    votedFor.splice(voteIndex, 1)
+    this.set('votedFor', votedFor)
   },
   login: function(username, password) {
     this.save({username: username, password: password},

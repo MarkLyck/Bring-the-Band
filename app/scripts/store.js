@@ -1,7 +1,7 @@
 import Session from './models/Session'
-import Bands from './collections/Bands'
 
 import SearchBands from './collections/SearchBands'
+import VoteBands from './collections/VoteBands'
 
 let store = {
   session: new Session(),
@@ -11,6 +11,9 @@ let store = {
     prev: '',
     offset: 0,
     total: 0
+  },
+  voteBands: {
+    data: new VoteBands()
   },
   settings: {
     appKey: 'kid_HyAproyt',
