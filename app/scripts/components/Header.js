@@ -38,15 +38,15 @@ const Header = React.createClass({
   render: function() {
     let navLinks = (
       <div id="nav-links">
-        <Link to="/top-bands">Top Bands</Link>
-        <a onClick={this.showLogin}>Login</a>
-        <a onClick={this.showSignup}>Signup</a>
+        <Link to="/top-bands"><i className="fa fa-star" aria-hidden="true"></i> Top Bands</Link>
+        <a onClick={this.showLogin}><i className="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+        <a onClick={this.showSignup}><i className="fa fa-user-plus" aria-hidden="true"></i> Signup</a>
       </div>
     )
     if (this.state.authtoken || localStorage.authtoken) {
       navLinks = (
         <div id="nav-links">
-          <Link to="/top-bands">Top Bands</Link>
+          <Link to="/top-bands"><i className="fa fa-star" aria-hidden="true"></i> Top Bands</Link>
           <a href="#" onClick={store.session.logout.bind(store.session)}><i className="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
         </div>
       )
@@ -54,9 +54,9 @@ const Header = React.createClass({
 
     let modal;
     if (this.state.showModal === 'signup') {
-      modal = <div className="form-modal-container" onClick={this.closeModal}><Signup/></div>
+      modal = <div className="form-modal-container" onClick={this.closeModal}><Signup closeModal={this.closeModal}/></div>
     } else if (this.state.showModal === 'login') {
-      modal = <div className="form-modal-container" onClick={this.closeModal}><Login/></div>
+      modal = <div className="form-modal-container" onClick={this.closeModal}><Login closeModal={this.closeModal}/></div>
     }
 
     return (

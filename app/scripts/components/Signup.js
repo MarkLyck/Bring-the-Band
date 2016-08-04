@@ -12,6 +12,7 @@ const Signup = React.createClass({
     let username = this.refs.username.value
     let password = this.refs.password.value
     store.session.signup(username, password)
+    this.props.closeModal()
   },
   checkIfEnter: function(e) {
     if (e.which === 13) {

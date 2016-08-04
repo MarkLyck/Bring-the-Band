@@ -10,6 +10,7 @@ const Login = React.createClass({
     let username = this.refs.username.value
     let password = this.refs.password.value
     store.session.login(username, password)
+    this.props.closeModal()
   },
   checkIfEnter: function(e) {
     if (e.which === 13) {
