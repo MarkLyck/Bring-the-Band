@@ -50,7 +50,6 @@ const BandItem = React.createClass({
 
     let content = (
       <div>
-        <i className="up-vote fa fa-thumbs-up" aria-hidden="true"></i>
         <div className="cover" style={urlStyle}>
         </div>
         <div className="bottom-section">
