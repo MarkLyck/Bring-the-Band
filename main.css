@@ -491,52 +491,6 @@ nav {
   margin-top: 25px;
   display: flex;
   flex-wrap: wrap; }
-  .band-list .band-item {
-    width: calc(100% / 5 - 40px);
-    margin: 20px;
-    box-sizing: border-box;
-    position: relative; }
-    .band-list .band-item .cover {
-      width: 100%;
-      height: 200px;
-      background-repeat: no-repeat;
-      background-size: cover;
-      position: relative; }
-      .band-list .band-item .cover:hover::after {
-        cursor: pointer;
-        content: '\f164';
-        font-family: FontAwesome;
-        color: #fff;
-        font-size: 5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #2bba87;
-        opacity: 0.9;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        position: absolute; }
-    .band-list .band-item .bottom-section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: #333;
-      background: #fff;
-      height: 60px;
-      padding: 0 10px; }
-      .band-list .band-item .bottom-section .band-name {
-        max-width: 80%; }
-      .band-list .band-item .bottom-section .votes {
-        max-width: 20%; }
-      .band-list .band-item .bottom-section:hover {
-        cursor: pointer;
-        background: #333; }
-        .band-list .band-item .bottom-section:hover .band-name {
-          color: #fff; }
-        .band-list .band-item .bottom-section:hover .votes {
-          color: #fff; }
   .band-list .voted-for .cover::after {
     content: '\f164';
     font-family: FontAwesome;
@@ -558,6 +512,54 @@ nav {
   .band-list .voted-for .bottom-section .votes {
     color: #2bba87; }
 
+.band-item {
+  width: calc(100% / 5 - 40px);
+  margin: 20px;
+  box-sizing: border-box;
+  position: relative; }
+  .band-item .cover {
+    width: 100%;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative; }
+    .band-item .cover:hover::after {
+      cursor: pointer;
+      content: '\f164';
+      font-family: FontAwesome;
+      color: #fff;
+      font-size: 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #2bba87;
+      opacity: 0.9;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      position: absolute; }
+  .band-item .bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+    background: #fff;
+    height: 60px;
+    padding: 0 10px; }
+    .band-item .bottom-section .band-name {
+      max-width: 80%; }
+    .band-item .bottom-section .votes {
+      max-width: 20%; }
+    .band-item .bottom-section:hover {
+      cursor: pointer;
+      background: #333; }
+      .band-item .bottom-section:hover .band-name {
+        color: #fff; }
+      .band-item .bottom-section:hover .votes {
+        color: #fff; }
+
 #lore-more-btn {
   width: 60%;
   padding: 20px;
@@ -567,6 +569,18 @@ nav {
   margin: 30px auto;
   justify-content: center; }
 
+@media (max-width: 1200px) {
+  .band-item {
+    width: calc(100% / 4 - 40px); } }
+@media (max-width: 1000px) {
+  .band-item {
+    width: calc(100% / 3 - 40px); } }
+@media (max-width: 750px) {
+  .band-item {
+    width: calc(100% / 2 - 40px); } }
+@media (max-width: 550px) {
+  .band-item {
+    width: calc(100% - 40px); } }
 .modal-container {
   position: fixed;
   top: 0;
