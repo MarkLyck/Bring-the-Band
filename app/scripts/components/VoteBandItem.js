@@ -30,30 +30,26 @@ const BandItem = React.createClass({
       'backgroundImage': `url("${this.state.band.imgURL}")`
     }
 
-    let content = (
-      <div>
-        <div className="cover" style={urlStyle}>
-        </div>
+
+    let itemClasses;
+    let clickHandler;
+    if (store.session.get('votedFor').indexOf(this.state.band._id) === -1) {
+      itemClasses = "band-item"
+      clickHandler = this.voteForBand
+    } else {
+      itemClasses = "voted-for band-item"
+    }
+
+    return (
+      <li className={itemClasses}>
+        <div onClick={clickHandler} className="cover" style={urlStyle}></div>
         <div className="bottom-section">
           <h3 className="band-name">{this.state.band.name}</h3>
           <h3 className="votes">{this.state.band.votes} <i className="fa fa-thumbs-up" aria-hidden="true"></i></h3>
         </div>
-      </div>
+      </li>
     )
 
-    if (store.session.get('votedFor').indexOf(this.state.band._id) === -1) {
-      return (
-        <li className="band-item" onClick={this.voteForBand}>
-          {content}
-        </li>
-      )
-    } else {
-      return (
-        <li className="voted-for band-item">
-          {content}
-        </li>
-      )
-    }
   },
   componentWillUnmount: function() {
     let band = store.voteBands.data.get(this.props.band._id)
