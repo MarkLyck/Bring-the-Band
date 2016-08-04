@@ -6,17 +6,14 @@ import store from '../store'
 
 const BandItem = React.createClass({
   getInitialState: function() {
-    let band = store.voteBands.data.get(this.props.band._id).toJSON()
-    return {band: band}
+    return {band: this.props.band}
   },
   componentDidMount: function() {
-    // this.updateVotes()
     let band = store.voteBands.data.get(this.props.band._id)
     band.on('change', this.updateVotes)
   },
   updateVotes: function() {
     this.setState({band: store.voteBands.data.get(this.state.band._id).toJSON()})
-    // store.voteBands.data.get(this.state.band._id).getVotes()
   },
   voteForBand: function() {
     console.log('vote for band button');
@@ -33,16 +30,17 @@ const BandItem = React.createClass({
     }
     return (
       <li className="band-item">
-        <div className="cover" style={urlStyle}></div>
+        <i className="up-vote fa fa-thumbs-up" aria-hidden="true"></i>
+        <div className="cover" style={urlStyle}>
+        </div>
         <div className="bottom-section">
           <h3 className="band-name">{this.state.band.name}</h3>
-          <VoteButton votes={this.state.band.votes} voteForBand={this.voteForBand} id={this.state.band._id}/>
+          <h3 className="votes">{this.state.band.votes} <i className="fa fa-thumbs-up" aria-hidden="true"></i></h3>
         </div>
       </li>
     )
   },
   componentWillUnmount: function() {
-    // store.voteBands.data.off('update', this.updateVotes)
     let band = store.voteBands.data.get(this.props.band._id)
     band.on('change', this.updateVotes)
   }

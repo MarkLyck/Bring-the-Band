@@ -6,7 +6,7 @@ import store from '../store'
 
 const BandItem = React.createClass({
   getInitialState: function() {
-    return {band: this.props.band, votes: 0}
+    return {band: this.props.band}
   },
   componentDidMount: function() {
     if (store.voteBands.data.getRealID(this.props.band.id)) {
@@ -19,10 +19,6 @@ const BandItem = React.createClass({
     if (store.voteBands.data.getRealID(this.props.band.id)) {
       let realId = store.voteBands.data.getRealID(this.props.band.id)
       this.setState({band: store.voteBands.data.get(realId).toJSON()})
-      $.ajax(`https://baas.kinvey.com/appdata/${store.settings.appKey}/votes?query={"bandId":"${this.state.band._id}"}`)
-        .then((response) => {
-          this.setState({votes: response.length})
-        })
     }
   },
   voteForBand: function() {
@@ -51,10 +47,12 @@ const BandItem = React.createClass({
     }
     return (
       <li className="band-item">
-        <div className="cover" style={urlStyle}></div>
+        <i className="up-vote fa fa-thumbs-up" aria-hidden="true"></i>
+        <div className="cover" style={urlStyle}>
+        </div>
         <div className="bottom-section">
           <h3 className="band-name">{this.state.band.name}</h3>
-          <VoteButton votes={this.state.votes} voteForBand={this.voteForBand} id={this.state.band._id}/>
+          <h3 className="votes">{this.state.band.votes} <i className="fa fa-thumbs-up" aria-hidden="true"></i></h3>
         </div>
       </li>
     )

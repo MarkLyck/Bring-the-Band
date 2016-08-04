@@ -13,7 +13,7 @@ const SearchPage = React.createClass({
     let searchTerm = this.props.params.searchTerm
     store.searchBands.data.searchFor(searchTerm)
 
-    store.voteBands.data.fetch()
+    store.voteBands.data.fetch({success: store.voteBands.data.getModelVotes.bind(store.voteBands.data)})
   },
   updateList: function() {
     this.setState({bands: store.searchBands.data.toJSON()})
@@ -27,7 +27,7 @@ const SearchPage = React.createClass({
     let bandList;
     if (this.state.bands[0]) {
       bandList = this.state.bands.map((band, i) => {
-        return <BandItem band={band} key={i}/>
+        return <BandItem band={band} key={band.id}/>
       })
     }
 

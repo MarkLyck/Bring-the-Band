@@ -45,19 +45,17 @@ const VoteBands = Backbone.Collection.extend({
             this.trigger('update')
           },
           error: function() {
-            throw new Error('CREATING VOTE FAILED')
+            console.error('Creating vote failed')
           }
         })
       },
       error: function() {
-        throw new Error('CREATING BAND FAILED')
+        console.error('Creating band failed')
       }
     }, {wait: true})
   },
   getModelVotes: function() {
     console.log('Getting model votes');
-    console.log('this: ', this);
-    console.log('store: ', store.voteBands.data);
     this.forEach((band) => {
       band.getVotes()
     })

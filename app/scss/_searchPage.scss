@@ -9,15 +9,58 @@
     width: calc(100% / 5 - 40px);
     margin: 20px;
     box-sizing: border-box;
+    position: relative;
+    .up-vote {
+      opacity: 0;
+      color: #fff;
+      font-size: 5rem;
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
     .cover {
       width: 100%;
       height: 200px;
       background-repeat: no-repeat;
       background-size: cover;
+      position: relative;
+
     }
     .bottom-section {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      color: $text-color;
+      background: darken($background-color, 5%);
+      height: 60px;
+      padding: 0 10px;
+      .band-name {
+        max-width: 80%;
+      }
+      .votes {
+        max-width: 20%;
+      }
+    }
+    &:hover {
+      cursor: pointer;
+      .up-vote {
+        opacity: 1;
+      }
+      .cover::after {
+        content: '';
+        background: $primary-color;
+        opacity: 0.8;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+      }
+      .bottom-section {
+        background: darken($background-color, 10%);
+      }
     }
   }
 

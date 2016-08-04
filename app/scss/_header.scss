@@ -7,6 +7,7 @@ nav {
   align-items: center;
   height: 75px;
   background: $header-color;
+  z-index: 5;
   a {
     display: flex;
     align-items: center;
@@ -43,7 +44,9 @@ nav {
     height: 35px;
     width: 75%;
     border-radius: 5px;
-    border: 1px solid $unselected-color;
+    border: 1px solid darken($header-color, 10%);
+    background: darken($header-color, 5%);
+    color: #fff;
     margin-left: 20px;
     padding: 0 10px;
     font-size: 0.8rem;
