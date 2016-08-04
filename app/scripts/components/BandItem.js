@@ -47,29 +47,29 @@ const BandItem = React.createClass({
     let urlStyle = {
       'backgroundImage': `url("${this.state.band.imgURL}")`
     }
-    // console.log('votedFor: ' + store.session.get('votedFor') + ' vs: ' +  this.state.band._id);
+
+    let content = (
+      <div>
+        <i className="up-vote fa fa-thumbs-up" aria-hidden="true"></i>
+        <div className="cover" style={urlStyle}>
+        </div>
+        <div className="bottom-section">
+          <h3 className="band-name">{this.state.band.name}</h3>
+          <h3 className="votes">{this.state.band.votes} <i className="fa fa-thumbs-up" aria-hidden="true"></i></h3>
+        </div>
+      </div>
+    )
+
     if (store.session.get('votedFor').indexOf(this.state.band._id) === -1) {
       return (
         <li className="band-item" onClick={this.voteForBand}>
-          <i className="up-vote fa fa-thumbs-up" aria-hidden="true"></i>
-          <div className="cover" style={urlStyle}>
-          </div>
-          <div className="bottom-section">
-            <h3 className="band-name">{this.state.band.name}</h3>
-            <h3 className="votes">{this.state.band.votes} <i className="fa fa-thumbs-up" aria-hidden="true"></i></h3>
-          </div>
+          {content}
         </li>
       )
     } else {
       return (
         <li className="voted-for band-item">
-          <i className="up-vote fa fa-thumbs-up" aria-hidden="true"></i>
-          <div className="cover" style={urlStyle}>
-          </div>
-          <div className="bottom-section">
-            <h3 className="band-name">{this.state.band.name}</h3>
-            <h3 className="votes">{this.state.band.votes} <i className="fa fa-thumbs-up" aria-hidden="true"></i></h3>
-          </div>
+          {content}
         </li>
       )
     }
