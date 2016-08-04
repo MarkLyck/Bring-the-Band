@@ -530,7 +530,7 @@ nav {
       .band-list .band-item:hover .cover::after {
         content: '';
         background: #2bba87;
-        opacity: 0.8;
+        opacity: 0.9;
         top: 0;
         right: 0;
         bottom: 0;
@@ -538,6 +538,17 @@ nav {
         position: absolute; }
       .band-list .band-item:hover .bottom-section {
         background: #e6e6e6; }
+  .band-list .voted-for .up-vote {
+    opacity: 1; }
+  .band-list .voted-for .cover::after {
+    content: '';
+    background: #2bba87;
+    opacity: 0.9;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute; }
 
 #lore-more-btn {
   width: 60%;
