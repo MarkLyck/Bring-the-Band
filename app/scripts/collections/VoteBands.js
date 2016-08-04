@@ -3,7 +3,7 @@ import Backbone from 'backbone'
 import Band from '../models/Band'
 import Vote from '../models/Vote'
 
-import store from '../store'
+// import store from '../store'
 
 const VoteBands = Backbone.Collection.extend({
   url: `https://baas.kinvey.com/appdata/kid_HyAproyt/bands`,
@@ -26,20 +26,21 @@ const VoteBands = Backbone.Collection.extend({
     })
     return realId
   },
-  createBand: function(band) {
+  createBand: function(band, session) {
     console.log('creating new Album');
     this.create({
       name: band.name,
       imgURL: band.imgURL,
-      bandId: band.id
+      bandId: band.id,
+      votes: 1
     }, {
       success: (bandResponse) => {
-        store.session.addVoteFor(bandResponse.get('_id'))
+        session.addVoteFor(bandResponse.get('_id'))
         let vote = new Vote()
 
         vote.save({
           bandId: bandResponse.get('_id'),
-          userName: store.session.get('username')
+          userName: session.get('username')
         }, {
           success: (voteResponse) => {
             this.trigger('update')

@@ -24,8 +24,7 @@ const VotePage = React.createClass({
     }
 
     let sortedBands = _.sortBy(this.state.bands, function(band) { return band.votes });
-    sortedBands = sortedBands.reverse()
-    console.log(sortedBands);
+    // sortedBands = sortedBands.reverse()
 
     let topBands = sortedBands.map((band, i) => {
       return <VoteBandItem band={band} key={i} />

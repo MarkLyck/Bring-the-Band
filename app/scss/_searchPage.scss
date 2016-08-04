@@ -51,7 +51,7 @@
       .cover::after {
         content: '';
         background: $primary-color;
-        opacity: 0.8;
+        opacity: 0.9;
         top: 0;
         right: 0;
         bottom: 0;
@@ -61,6 +61,21 @@
       .bottom-section {
         background: darken($background-color, 10%);
       }
+    }
+  }
+  .voted-for {
+    .up-vote {
+      opacity: 1;
+    }
+    .cover::after {
+      content: '';
+      background: $primary-color;
+      opacity: 0.9;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      position: absolute;
     }
   }
 

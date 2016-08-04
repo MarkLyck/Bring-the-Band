@@ -11,6 +11,7 @@ const BandItem = React.createClass({
   componentDidMount: function() {
     let band = store.voteBands.data.get(this.props.band._id)
     band.on('change', this.updateVotes)
+    store.session.on('change', this.updateVotes)
   },
   updateVotes: function() {
     this.setState({band: store.voteBands.data.get(this.state.band._id).toJSON()})
@@ -28,21 +29,37 @@ const BandItem = React.createClass({
     let urlStyle = {
       'backgroundImage': `url("${this.state.band.imgURL}")`
     }
-    return (
-      <li className="band-item">
-        <i className="up-vote fa fa-thumbs-up" aria-hidden="true"></i>
-        <div className="cover" style={urlStyle}>
-        </div>
-        <div className="bottom-section">
-          <h3 className="band-name">{this.state.band.name}</h3>
-          <h3 className="votes">{this.state.band.votes} <i className="fa fa-thumbs-up" aria-hidden="true"></i></h3>
-        </div>
-      </li>
-    )
+
+    if (store.session.get('votedFor').indexOf(this.state.band._id) === -1) {
+      return (
+        <li className="band-item" onClick={this.voteForBand}>
+          <i className="up-vote fa fa-thumbs-up" aria-hidden="true"></i>
+          <div className="cover" style={urlStyle}>
+          </div>
+          <div className="bottom-section">
+            <h3 className="band-name">{this.state.band.name}</h3>
+            <h3 className="votes">{this.state.band.votes} <i className="fa fa-thumbs-up" aria-hidden="true"></i></h3>
+          </div>
+        </li>
+      )
+    } else {
+      return (
+        <li className="voted-for band-item">
+          <i className="up-vote fa fa-thumbs-up" aria-hidden="true"></i>
+          <div className="cover" style={urlStyle}>
+          </div>
+          <div className="bottom-section">
+            <h3 className="band-name">{this.state.band.name}</h3>
+            <h3 className="votes">{this.state.band.votes} <i className="fa fa-thumbs-up" aria-hidden="true"></i></h3>
+          </div>
+        </li>
+      )
+    }
   },
   componentWillUnmount: function() {
     let band = store.voteBands.data.get(this.props.band._id)
     band.on('change', this.updateVotes)
+    store.session.off('change', this.updateVotes)
   }
 })
 

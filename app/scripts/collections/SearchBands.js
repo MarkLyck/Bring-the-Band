@@ -2,11 +2,11 @@ import $ from 'jquery'
 import Backbone from 'backbone'
 
 import SearchBand from '../models/SearchBand'
-import store from '../store/'
+// import store from '../store/'
 
 const SearchBands = Backbone.Collection.extend({
   model: SearchBand,
-  searchFor: function(term) {
+  searchFor: function(term, store) {
     this.reset()
     $.ajax({
       url: `https://api.spotify.com/v1/search`,
@@ -35,7 +35,7 @@ const SearchBands = Backbone.Collection.extend({
       }
     })
   },
-  loadMore: function(term) {
+  loadMore: function(term, store) {
     if (store.searchBands.total > this.models.length) {
       $.ajax({
         url: `https://api.spotify.com/v1/search`,

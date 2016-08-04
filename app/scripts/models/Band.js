@@ -14,6 +14,11 @@ const Band = Backbone.Model.extend({
   },
   voteForBand: function(band) {
     console.log('VOTE FOR BAND MODEL');
+
+    let votes = this.get('votes')
+    votes++
+    this.set('votes', votes)
+
     let vote = new Vote()
 
     vote.save({

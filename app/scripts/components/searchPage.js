@@ -11,7 +11,7 @@ const SearchPage = React.createClass({
     store.searchBands.data.on('update', this.updateList)
 
     let searchTerm = this.props.params.searchTerm
-    store.searchBands.data.searchFor(searchTerm)
+    store.searchBands.data.searchFor(searchTerm, store)
 
     store.voteBands.data.fetch({success: store.voteBands.data.getModelVotes.bind(store.voteBands.data)})
   },
@@ -21,7 +21,7 @@ const SearchPage = React.createClass({
   loadMore: function() {
     console.log('loadMore func');
     let searchTerm = this.props.params.searchTerm
-    store.searchBands.data.loadMore(searchTerm)
+    store.searchBands.data.loadMore(searchTerm, store)
   },
   render: function() {
     let bandList;

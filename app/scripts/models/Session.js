@@ -28,6 +28,8 @@ const Session = Backbone.Model.extend({
     votedFor.push(id)
     this.set('votedFor', votedFor)
 
+    console.log('Updated votedFor: ', this.get('votedFor'));
+
     this.updateUser()
   },
   removeVoteFrom: function(id) {
@@ -87,7 +89,6 @@ const Session = Backbone.Model.extend({
     })
   },
   updateUser: function() {
-    console.log('SAVING USER');
     this.save(null, {
       type: 'PUT',
       url: `https://baas.kinvey.com/user/${store.settings.appKey}/${this.get('userId')}`,
