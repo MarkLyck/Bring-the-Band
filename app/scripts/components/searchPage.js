@@ -31,7 +31,7 @@ const SearchPage = React.createClass({
     let loadMoreBtn = (<button id="lore-more-btn" onClick={this.loadMore}>Load more bands</button>)
     return (
       <div>
-        <ul id="band-list">
+        <ul className="band-list">
           {bandList}
         </ul>
         {loadMoreBtn}

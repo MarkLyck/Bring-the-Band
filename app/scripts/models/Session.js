@@ -53,7 +53,7 @@ const Session = Backbone.Model.extend({
     store.session.save({
       username: username,
       password: password,
-      highscore: this.get('highScore')
+      votedFor: []
     },
     {
       url: `https://baas.kinvey.com/user/${store.settings.appKey}/`,
@@ -79,7 +79,7 @@ const Session = Backbone.Model.extend({
     this.fetch({
       url: `https://baas.kinvey.com/user/${store.settings.appKey}/_me`,
       success: () => {
-          console.log('retrieved: ', this);
+
       },
       error: function(response) {
         throw new Error('FETCHING USER FAILED!')

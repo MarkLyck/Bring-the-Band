@@ -418,19 +418,19 @@ header {
     display: flex;
     align-items: center; }
 
-#band-list {
+.band-list {
   display: flex;
   flex-wrap: wrap; }
-  #band-list .band-item {
+  .band-list .band-item {
     width: calc(100% / 5 - 40px);
     margin: 20px;
     box-sizing: border-box; }
-    #band-list .band-item .cover {
+    .band-list .band-item .cover {
       width: 100%;
       height: 200px;
       background-repeat: no-repeat;
       background-size: cover; }
-    #band-list .band-item .bottom-section {
+    .band-list .band-item .bottom-section {
       display: flex;
       justify-content: space-between; }
 

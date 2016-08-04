@@ -1,7 +1,7 @@
 
 
 
-#band-list {
+.band-list,  {
   display: flex;
   flex-wrap: wrap;
   .band-item {
@@ -19,4 +19,5 @@
       justify-content: space-between;
     }
   }
+
 }

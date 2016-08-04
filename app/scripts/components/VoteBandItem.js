@@ -9,21 +9,15 @@ const BandItem = React.createClass({
     return {band: this.props.band, votes: 0}
   },
   componentDidMount: function() {
-    if (store.voteBands.data.getRealID(this.props.band.id)) {
-      let realId = store.voteBands.data.getRealID(this.props.band.id)
-      this.updateVotes()
-    }
+    this.updateVotes()
     store.voteBands.data.on('update', this.updateVotes)
   },
   updateVotes: function() {
-    if (store.voteBands.data.getRealID(this.props.band.id)) {
-      let realId = store.voteBands.data.getRealID(this.props.band.id)
-      this.setState({band: store.voteBands.data.get(realId).toJSON()})
-      $.ajax(`https://baas.kinvey.com/appdata/${store.settings.appKey}/votes?query={"bandId":"${this.state.band._id}"}`)
-        .then((response) => {
-          this.setState({votes: response.length})
-        })
-    }
+    this.setState({band: store.voteBands.data.get(this.state.band._id).toJSON()})
+    $.ajax(`https://baas.kinvey.com/appdata/${store.settings.appKey}/votes?query={"bandId":"${this.state.band._id}"}`)
+      .then((response) => {
+        this.setState({votes: response.length})
+      })
   },
   voteForBand: function() {
     console.log('vote for band button');
