@@ -20,14 +20,13 @@ const Signup = React.createClass({
   },
   render: function() {
     return (
-      <Modal>
-        <div className="form-modal">
+      <form onSubmit={this.signup} className="form-modal signup">
         <h3>Signup</h3>
-          <input type="text" placeholder="Username" ref="username"/>
-          <input onKeyUp={this.checkIfEnter} type="password" placeholder="Password" ref="password"/>
-          <button onClick={this.signup} id="submit-btn">Signup</button>
-        </div>
-      </Modal>
+        <input type="text" placeholder="Username" ref="username"/>
+        <input type="password" placeholder="Password" ref="password"/>
+        <input type="password" placeholder="Verify Password" ref="verifyPassword"/>
+        <input type="submit" id="submit-btn" />
+      </form>
     )
   }
 })

@@ -18,14 +18,12 @@ const Login = React.createClass({
   },
   render: function() {
     return (
-      <Modal>
-        <div className="form-modal">
-          <h3>Login</h3>
-          <input type="text" placeholder="Username" ref="username"/>
-          <input onKeyUp={this.checkIfEnter} type="password" placeholder="Password" ref="password"/>
-          <button onClick={this.login} id="submit-btn">Submit</button>
-        </div>
-      </Modal>
+      <form onSubmit={this.login} className="form-modal login">
+        <h3>Login</h3>
+        <input type="text" placeholder="Username" ref="username"/>
+        <input type="password" placeholder="Password" ref="password"/>
+        <input type="submit" id="submit-btn" />
+      </form>
     )
   }
 })

@@ -5,12 +5,13 @@ import App from './components/App'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import SearchPage from './components/SearchPage'
-import VotePage from './components/VotePage'
+import TopBandsPage from './components/VotePage'
 
 const router = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={SearchPage}/>
+      <IndexRoute component={TopBandsPage}/>
+
       <Route path="login" component={Login}/>
       <Route path="signup" component={Signup}/>
 
@@ -18,12 +19,10 @@ const router = (
         <Route path=":searchTerm" component={SearchPage}/>
       </Route>
 
-      <Route path="/top-bands" component={VotePage}/>
+      <Route path="/top-bands" component={TopBandsPage}/>
 
     </Route>
   </Router>
 )
-
-//<IndexRoute component={}/>
 
 export default router
