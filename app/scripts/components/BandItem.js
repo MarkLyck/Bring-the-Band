@@ -42,7 +42,6 @@ const BandItem = React.createClass({
     }, {wait: true})
   },
   render: function() {
-    console.log(this.state.votes);
     if (!this.state.band) {
       return null
     }

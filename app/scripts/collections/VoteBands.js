@@ -54,6 +54,14 @@ const VoteBands = Backbone.Collection.extend({
       }
     }, {wait: true})
   },
+  getModelVotes: function() {
+    console.log('Getting model votes');
+    console.log('this: ', this);
+    console.log('store: ', store.voteBands.data);
+    this.forEach((band) => {
+      band.getVotes()
+    })
+  }
 })
 
 export default VoteBands

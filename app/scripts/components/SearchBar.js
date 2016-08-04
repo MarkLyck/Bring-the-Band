@@ -14,9 +14,9 @@ const SearchBar = React.createClass({
   },
   render: function() {
     return (
-      <form onSubmit={this.searchFor}>
-        <input type="text" ref="searchBar"/>
-        <input type="submit" value="Search"/>
+      <form id="search-form" onSubmit={this.searchFor}>
+        <input id="search-bar" type="text" placeholder="Search..." ref="searchBar"/>
+        <input id="search-btn" type="submit" value="&#xf002;"/>
       </form>
     )
   }

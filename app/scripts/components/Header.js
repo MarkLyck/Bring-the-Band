@@ -16,27 +16,37 @@ const Header = React.createClass({
   },
   render: function() {
     let navLinks = (
-      <nav>
+      <div id="nav-links">
+        <Link to="/top-bands">Top Bands</Link>
         <Link to="login">Login</Link>
         <Link to="signup">Signup</Link>
-      </nav>
+      </div>
     )
 
     if (this.state.authtoken || localStorage.authtoken) {
       navLinks = (
-        <nav>
-          <a href="#" onClick={store.session.logout.bind(store.session)}>Logout</a>
-        </nav>
+        <div id="nav-links">
+          <Link to="/top-bands">Top Bands</Link>
+          <a href="#" onClick={store.session.logout.bind(store.session)}><i className="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+        </div>
       )
     }
 
     return (
       <header>
-        <div className="wrapper">
-        <Link to="/" id="logo">BringTheBand</Link>
+        <nav>
         <SearchBar/>
-        </div>
+        <img id="logo" src="assets/images/logo.svg" />
         {navLinks}
+        </nav>
+        <div id="hero">
+          <h1 id="main-title">Bring the Band!</h1>
+          <h2 id="subtitle">Vote for your favorite bands to attend the festival!</h2>
+          <div className="wrapper">
+            <button>See the top Bands!</button>
+            <button>Sign up now!</button>
+          </div>
+        </div>
       </header>
     )
   }

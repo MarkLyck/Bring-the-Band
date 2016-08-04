@@ -18,7 +18,7 @@ const router = (
         <Route path=":searchTerm" component={SearchPage}/>
       </Route>
 
-      <Route path="vote" component={VotePage}/>
+      <Route path="/top-bands" component={VotePage}/>
 
     </Route>
   </Router>

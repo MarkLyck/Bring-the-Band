@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'underscore'
 
 import store from '../store'
 import VoteBandItem from './VoteBandItem'
@@ -9,7 +10,7 @@ const VotePage = React.createClass({
   },
   componentDidMount: function() {
     store.voteBands.data.on('update', this.updateList)
-    store.voteBands.data.fetch()
+    store.voteBands.data.fetch({success: store.voteBands.data.getModelVotes})
   },
   updateList: function() {
     this.setState({bands: store.voteBands.data.toJSON()})
@@ -18,12 +19,15 @@ const VotePage = React.createClass({
     store.voteBands.data.off('update', this.updateList)
   },
   render: function() {
-    // console.log(this.state.bands);
     if (!this.state.bands[0]) {
       return null
     }
 
-    let topBands = this.state.bands.map((band, i) => {
+    let sortedBands = _.sortBy(this.state.bands, function(band) { return band.votes });
+    sortedBands = sortedBands.reverse()
+    console.log(sortedBands);
+
+    let topBands = sortedBands.map((band, i) => {
       return <VoteBandItem band={band} key={i} />
     })
 

@@ -1,9 +1,12 @@
-header {
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 75px;
-  background: $primary-color;
+  background: $header-color;
   a {
     display: flex;
     align-items: center;
@@ -11,21 +14,92 @@ header {
     height: 100%;
     width: 100px;
     &:hover {
-      background: darken($primary-color, 5%);
+      background: $primary-color;
+      color: #fff;
+    }
+    i {
+      margin-right: 5px;
     }
   }
-  .wrapper {
-    display: flex;
-    #logo {
-      width: auto;
-      padding: 0 20px;
-    }
+  #logo {
+    position: absolute;
+    height: 50px;
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 12.5px;
   }
-
-  nav {
+  #nav-links {
     height: 100%;
     display: flex;
     align-items: center;
 
+  }
+}
+
+#search-form {
+  width: 30%;
+  #search-bar {
+    height: 35px;
+    width: 75%;
+    border-radius: 5px;
+    border: 1px solid $unselected-color;
+    margin-left: 20px;
+    padding: 0 10px;
+    font-size: 0.8rem;
+  }
+  #search-btn {
+    font-family: FontAwesome;
+    color: $unselected-color;
+    border: none;
+    background: none;
+    height: 100%;
+    width: 10%;
+    &:hover {
+      cursor: pointer;
+      color: $primary-color;
+    }
+  }
+}
+
+#hero {
+  margin-top: 75px;
+  width: 100%;
+  height: 500px;
+  background-image: url('assets/images/banner.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  #main-title {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: bolder;
+    background: rgba(0,0,0,0.7);
+    padding: 20px;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  #subtitle {
+    color: #fff;
+    font-weight: normal;
+    background: rgba(0,0,0,0.7);
+    padding: 20px;
+    margin: 0;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+  }
+  .wrapper {
+    margin-bottom: 50px;
+    button {
+      margin: 0 20px;
+      padding: 20px 40px;
+      border-radius: 50px;
+      font-weight: bold;
+    }
   }
 }

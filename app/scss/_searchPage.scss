@@ -2,6 +2,7 @@
 
 
 .band-list,  {
+  margin-top: 25px;
   display: flex;
   flex-wrap: wrap;
   .band-item {
@@ -20,4 +21,14 @@
     }
   }
 
+}
+
+#lore-more-btn {
+  width: 60%;
+  padding: 20px;
+  border-radius: 15px;
+  box-sizing: border-box;
+  display: flex;
+  margin: 30px auto;
+  justify-content: center;
 }

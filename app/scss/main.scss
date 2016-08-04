@@ -3,9 +3,18 @@
 @import "header";
 @import "searchPage";
 
+body {
+  background-color: #333;
+  // background-color: #38454e;
+}
+
+h1,h2,h3,h4 {
+  font-weight: lighter;
+}
+
 a {
   text-decoration: none;
-  color: #fff;
+  color: $primary-color;
 }
 
 ul {
@@ -19,10 +28,11 @@ button, input {
 }
 
 button {
-  background: $action-color;
+  background: $primary-color;
   border: none;
   color: #fff;
   &:hover {
     cursor: pointer;
+    background: darken($primary-color, 10%);
   }
 }

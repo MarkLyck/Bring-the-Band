@@ -9,8 +9,10 @@ const SearchPage = React.createClass({
   },
   componentDidMount: function() {
     store.searchBands.data.on('update', this.updateList)
+
     let searchTerm = this.props.params.searchTerm
     store.searchBands.data.searchFor(searchTerm)
+
     store.voteBands.data.fetch()
   },
   updateList: function() {
@@ -28,7 +30,11 @@ const SearchPage = React.createClass({
         return <BandItem band={band} key={i}/>
       })
     }
-    let loadMoreBtn = (<button id="lore-more-btn" onClick={this.loadMore}>Load more bands</button>)
+
+    let loadMoreBtn;
+    if (store.searchBands.total > (store.searchBands.offset + 20)) {
+      loadMoreBtn = (<button id="lore-more-btn" onClick={this.loadMore}>Load more bands</button>)
+    }
     return (
       <div>
         <ul className="band-list">

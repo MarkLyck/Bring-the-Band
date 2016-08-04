@@ -27,6 +27,7 @@ const SearchBands = Backbone.Collection.extend({
         store.searchBands.next = response.artists.next
         store.searchBands.offset = 20
         store.searchBands.total = response.artists.total
+        this.trigger('update')
       },
       error: function(response) {
         console.log('ERROR FETCHING FROM SERVER: ', response);
