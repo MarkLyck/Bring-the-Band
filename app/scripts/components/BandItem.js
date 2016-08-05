@@ -2,7 +2,7 @@ import $ from 'jquery'
 import React from 'react'
 import store from '../store'
 import Modal from './Modal'
-// import AlbumModal from './AlbumModal'
+import AlbumModal from './AlbumModal'
 
 const BandItem = React.createClass({
   getInitialState: function() {
@@ -11,7 +11,7 @@ const BandItem = React.createClass({
   componentDidMount: function() {
     if (this.state.band.id) {
       store.voteBands.data.on('update', this.updateVotes)
-    } else {
+    } else if (store.voteBands.data.get(this.props.band._id)) {
       let band = store.voteBands.data.get(this.props.band._id)
       band.on('change', this.updateVotes)
     }
@@ -39,11 +39,11 @@ const BandItem = React.createClass({
 
     this.setState({votes: (this.state.votes + 1)})
 
-    if(!store.voteBands.data.getRealID(this.props.band.id)) {
-      store.voteBands.data.createBand(this.state.band, store.session)
-    } else {
+    if(store.voteBands.data.get(this.state.band._id)) {
       let band = store.voteBands.data.get(this.state.band._id)
       band.voteForBand()
+    } else {
+      store.voteBands.data.createBand(this.state.band, store.session)
     }
   },
   removeVoteFromBand: function() {
@@ -104,22 +104,23 @@ const BandItem = React.createClass({
       if (this.state.band.uri) {
         followWidget = <iframe src={`https://embed.spotify.com/follow/1/?uri=${this.state.band.uri}&size=basic&theme=light`} width="200" height="25" scrolling="no" frameBorder="0" style={{border:'none', overflow:'hidden'}} allowTransparency="true"></iframe>
       }
-//<AlbumModal band={this.state.band} votes={this.state.votes} albumURI={this.state.albumURI}/>
+//
+
+// <div className="left">
+//   <div className="detail-cover" style={urlStyle}></div>
+//   <div className="wrapper">
+//     <h3 className="band-name">{this.state.band.name}</h3>
+//     <h3 className="votes">{this.state.votes} <i className="fa fa-thumbs-up" aria-hidden="true"></i></h3>
+//   </div>
+//   {followWidget}
+//
+// </div>
+// <div className="right">
+//   {iFrame}
+// </div>
       modal = (
         <Modal closeModal={this.closeModal}>
-
-          <div className="left">
-            <div className="detail-cover" style={urlStyle}></div>
-            <div className="wrapper">
-              <h3 className="band-name">{this.state.band.name}</h3>
-              <h3 className="votes">{this.state.votes} <i className="fa fa-thumbs-up" aria-hidden="true"></i></h3>
-            </div>
-            {followWidget}
-
-          </div>
-          <div className="right">
-            {iFrame}
-          </div>
+          <AlbumModal band={this.state.band} votes={this.state.votes} albumURI={this.state.albumURI} urlStyle={urlStyle}/>
         </Modal>
       )
     }

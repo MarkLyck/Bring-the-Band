@@ -596,22 +596,26 @@ nav {
     color: #fff;
     width: 80%;
     animation: 500ms slideDown; }
-    .modal-container .modal .left {
-      width: 200px;
-      margin: 40px; }
-      .modal-container .modal .left .detail-cover {
+    .modal-container .modal .album-modal {
+      width: 100%;
+      height: 100%;
+      display: flex; }
+      .modal-container .modal .album-modal .left {
         width: 200px;
-        height: 200px;
-        background-position: center;
-        background-size: cover; }
-      .modal-container .modal .left .wrapper {
-        display: flex;
-        justify-content: space-between; }
-      .modal-container .modal .left .spotify-url:hover {
-        text-decoration: underline;
-        color: #26a578; }
-    .modal-container .modal .right {
-      width: calc(100% - 200px); }
+        margin: 40px; }
+        .modal-container .modal .album-modal .left .detail-cover {
+          width: 200px;
+          height: 200px;
+          background-position: center;
+          background-size: cover; }
+        .modal-container .modal .album-modal .left .wrapper {
+          display: flex;
+          justify-content: space-between; }
+        .modal-container .modal .album-modal .left .spotify-url:hover {
+          text-decoration: underline;
+          color: #26a578; }
+      .modal-container .modal .album-modal .right {
+        width: calc(100% - 200px); }
 @keyframes slideDown {
   0% {
     transform: translateY(-100%); }
