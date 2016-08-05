@@ -57,4 +57,22 @@
       cursor: pointer;
     }
   }
+  animation: 500ms slideDown;
+  @keyframes slideDown {
+  	0% {
+  		transform: translateY(-100%);
+  	}
+  	25%{
+  		transform: translateY(8%);
+  	}
+  	50%{
+  		transform: translateY(-4%);
+  	}
+  	75%{
+  		transform: translateY(4%);
+  	}
+  	100% {
+  		transform: translateY(0%);
+  	}
+  }
 }
