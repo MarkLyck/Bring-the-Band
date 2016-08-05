@@ -527,7 +527,9 @@ nav {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    position: relative; }
+    position: relative;
+    transition: 1s;
+    -webkit-transition: 1s; }
     .band-item .cover:hover::after {
       cursor: pointer;
       content: '\f164';
@@ -543,7 +545,9 @@ nav {
       right: 0;
       bottom: 0;
       left: 0;
-      position: absolute; }
+      position: absolute;
+      transition: 1s;
+      -webkit-transition: 1s; }
   .band-item .bottom-section {
     display: flex;
     justify-content: space-between;
