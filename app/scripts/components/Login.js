@@ -16,7 +16,7 @@ const Login = React.createClass({
     return (
       <form onSubmit={this.login} className="form-modal login">
         <h3>Login</h3>
-        <input type="text" placeholder="Username" ref="username"/>
+        <input type="text" placeholder="Username" ref="username" autoFocus="true"/>
         <input type="password" placeholder="Password" ref="password"/>
         <input type="submit" id="submit-btn" />
       </form>

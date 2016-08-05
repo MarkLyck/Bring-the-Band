@@ -23,17 +23,16 @@ const Header = React.createClass({
     hashHistory.push('/top-bands')
   },
   showSignup: function() {
-    this.setState({showModal: 'signup'})
+    store.session.set('showModal', 'signup')
   },
   showLogin: function() {
-    this.setState({showModal: 'login'})
+    store.session.set('showModal', 'login')
   },
   closeModal: function(e) {
     console.log('close modal');
     if (e) {
       if (_.toArray(e.target.classList).indexOf('form-modal-container') !== -1) {
         store.session.set('showModal', false)
-        // this.setState({showModal: false})
       }
     }
   },
