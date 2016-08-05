@@ -11,9 +11,9 @@ const BandItem = React.createClass({
     return {band: this.props.band}
   },
   componentDidMount: function() {
-    // console.log(this.state.band);
-    if (store.voteBands.data.getRealID(this.state.band.id)) {
-      this.updateVotes()
+
+    if (this.state.band.id) {
+      store.voteBands.data.on('update', this.updateVotes)
     }
 
     if (this.state.band.bandId) {
