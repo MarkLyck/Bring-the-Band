@@ -591,8 +591,26 @@ nav {
   align-items: center;
   z-index: 10; }
   .modal-container .modal {
-    background: #fff;
-    width: 60%; }
+    display: flex;
+    background: #222;
+    color: #fff;
+    width: 80%; }
+    .modal-container .modal .left {
+      width: 200px;
+      margin: 40px; }
+      .modal-container .modal .left .detail-cover {
+        width: 200px;
+        height: 200px;
+        background-position: center;
+        background-size: cover; }
+      .modal-container .modal .left .wrapper {
+        display: flex;
+        justify-content: space-between; }
+      .modal-container .modal .left .spotify-url:hover {
+        text-decoration: underline;
+        color: #26a578; }
+    .modal-container .modal .right {
+      width: calc(100% - 200px); }
 
 .form-modal-container {
   position: fixed;
