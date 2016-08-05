@@ -6,8 +6,8 @@ import store from './store'
 
 $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
   if (jqueryAjax.url.indexOf('kinvey') !== -1) {
-    if (localStorage.authtoken) {
-      xhrAjax.setRequestHeader('Authorization', `Kinvey ${localStorage.authtoken}`)
+    if (store.session.get('authtoken')) {
+      xhrAjax.setRequestHeader('Authorization', `Kinvey ${store.session.get('authtoken')}`)
     } else {
       xhrAjax.setRequestHeader('Authorization', `Basic ${store.settings.basicAuth}`)
     }
@@ -15,7 +15,11 @@ $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
 })
 
 if (localStorage.authtoken) {
+  store.session.set('authtoken', localStorage.authtoken)
   store.session.retrieve()
+} else {
+  store.session.set('authtoken', store.anom.authtoken)
+  store.session.set('username', store.anom.username)
 }
 
 ReactDOM.render(router, document.getElementById('container'))

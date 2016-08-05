@@ -43,7 +43,7 @@ const Header = React.createClass({
         <a onClick={this.showSignup}><i className="fa fa-user-plus" aria-hidden="true"></i> Signup</a>
       </div>
     )
-    if (this.state.authtoken || localStorage.authtoken) {
+    if (localStorage.authtoken) {
       navLinks = (
         <div id="nav-links">
           <Link to="/top-bands"><i className="fa fa-star" aria-hidden="true"></i> Top Bands</Link>
