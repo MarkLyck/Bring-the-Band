@@ -2,6 +2,7 @@ import $ from 'jquery'
 import React from 'react'
 import store from '../store'
 import Modal from './Modal'
+// import AlbumModal from './AlbumModal'
 
 const BandItem = React.createClass({
   getInitialState: function() {
@@ -38,7 +39,7 @@ const BandItem = React.createClass({
 
     this.setState({votes: (this.state.votes + 1)})
 
-    if(!store.voteBands.data.bandExists(this.state.band.name)) {
+    if(!store.voteBands.data.getRealID(this.props.band.id)) {
       store.voteBands.data.createBand(this.state.band, store.session)
     } else {
       let band = store.voteBands.data.get(this.state.band._id)
@@ -51,16 +52,21 @@ const BandItem = React.createClass({
     band.removeVote()
   },
   showBand: function() {
-    // let band = store.voteBands.data.get(this.state.band._id)
-    console.log(this.state.band);
     if (this.state.band.bandId) {
       store.albums.getAlbumsFor(this.state.band.bandId)
-    } else {
-      store.albums.getAlbumsFor(this.state.band.id).then((albumURI) => {
-        console.log('PROMISE WORKED');
+      .then((albumURI) => {
+        console.log('PROMISE WORKED: ', albumURI);
         this.setState({showBand: true, albumURI: albumURI})
       })
-      .fail(() => {
+      .catch(() => {
+        console.log('FAILED TO GET ALBUM');
+      })
+    } else {
+      store.albums.getAlbumsFor(this.state.band.id).then((albumURI) => {
+        console.log('PROMISE WORKED: ', albumURI);
+        this.setState({showBand: true, albumURI: albumURI})
+      })
+      .catch(() => {
         console.log('FAILED TO GET ALBUM');
       })
     }
@@ -90,18 +96,29 @@ const BandItem = React.createClass({
 
     let modal;
     if (this.state.showBand) {
+      let iFrame;
+      if (this.state.albumURI) {
+        iFrame = <iframe src={`https://embed.spotify.com/?uri=${this.state.albumURI}`} width="100%" height="380" frameBorder="0" allowTransparency="true"></iframe>
+      }
+      let followWidget;
+      if (this.state.band.uri) {
+        followWidget = <iframe src={`https://embed.spotify.com/follow/1/?uri=${this.state.band.uri}&size=basic&theme=light`} width="200" height="25" scrolling="no" frameBorder="0" style={{border:'none', overflow:'hidden'}} allowTransparency="true"></iframe>
+      }
+//<AlbumModal band={this.state.band} votes={this.state.votes} albumURI={this.state.albumURI}/>
       modal = (
         <Modal closeModal={this.closeModal}>
+
           <div className="left">
             <div className="detail-cover" style={urlStyle}></div>
             <div className="wrapper">
               <h3 className="band-name">{this.state.band.name}</h3>
               <h3 className="votes">{this.state.votes} <i className="fa fa-thumbs-up" aria-hidden="true"></i></h3>
             </div>
-            <iframe src={`https://embed.spotify.com/follow/1/?uri=${this.state.band.uri}&size=basic&theme=light`} width="200" height="25" scrolling="no" frameBorder="0" style={{border:'none', overflow:'hidden'}} allowTransparency="true"></iframe>
+            {followWidget}
+
           </div>
           <div className="right">
-            <iframe src={`https://embed.spotify.com/?uri=${this.state.albumURI}`} width="100%" height="380" frameBorder="0" allowTransparency="true"></iframe>
+            {iFrame}
           </div>
         </Modal>
       )
