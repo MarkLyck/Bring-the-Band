@@ -34,6 +34,7 @@ const BandItem = React.createClass({
   },
   voteForBand: function() {
     if (store.session.get('username') === 'anom') {
+      // hashHistory.push('/signup')
       return null
     }
 
@@ -55,7 +56,6 @@ const BandItem = React.createClass({
     if (!this.state.band) {
       return null
     }
-    // console.log(this.state.voted);
     let urlStyle = {
       'backgroundImage': `url("${this.state.band.imgURL}")`
     }
