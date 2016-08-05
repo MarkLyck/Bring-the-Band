@@ -1,8 +1,6 @@
 import React from 'react'
 import  {hashHistory} from 'react-router'
-
 import store from '../store'
-
 import Modal from './Modal'
 
 

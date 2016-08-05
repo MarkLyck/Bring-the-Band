@@ -2,7 +2,6 @@ import $ from 'jquery'
 import _ from 'underscore'
 import Backbone from 'backbone'
 import {hashHistory} from 'react-router'
-
 import store from '../store'
 
 const Session = Backbone.Model.extend({

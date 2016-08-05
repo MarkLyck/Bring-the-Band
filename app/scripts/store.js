@@ -1,7 +1,7 @@
 import Session from './models/Session'
-
 import SearchBands from './collections/SearchBands'
 import VoteBands from './collections/VoteBands'
+import Albums from './collections/Albums'
 
 let store = {
   session: new Session(),
@@ -15,6 +15,7 @@ let store = {
   voteBands: {
     data: new VoteBands()
   },
+  albums: new Albums(),
   anom: {
     username: 'anom',
     authtoken: '4842425e-82fe-462f-bbab-a10f6ab71b48.98//DN44NfQ3amPLirtMvDlD4jEXuM8FWA86HWdgOJg='

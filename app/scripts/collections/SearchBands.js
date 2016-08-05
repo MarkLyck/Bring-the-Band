@@ -2,7 +2,6 @@ import $ from 'jquery'
 import Backbone from 'backbone'
 
 import SearchBand from '../models/SearchBand'
-// import store from '../store/'
 
 const SearchBands = Backbone.Collection.extend({
   model: SearchBand,
@@ -20,7 +19,9 @@ const SearchBands = Backbone.Collection.extend({
             this.add({
               name: artist.name,
               id: artist.id,
-              imgURL: artist.images[0].url
+              imgURL: artist.images[0].url,
+              spotifyURL: artist.external_urls.spotify,
+              uri: artist.uri
             })
           }
         })
@@ -52,7 +53,9 @@ const SearchBands = Backbone.Collection.extend({
               this.add({
                 name: artist.name,
                 id: artist.id,
-                imgURL: artist.images[0].url
+                imgURL: artist.images[0].url,
+                spotifyURL: artist.external_urls.spotify,
+                uri: artist.uri
               })
             }
           })

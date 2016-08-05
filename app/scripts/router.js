@@ -12,9 +12,6 @@ const router = (
     <Route path="/" component={App}>
       <IndexRoute component={TopBandsPage}/>
 
-      <Route path="login" component={Login}/>
-      <Route path="signup" component={Signup}/>
-
       <Route path="search" component={SearchPage}>
         <Route path=":searchTerm" component={SearchPage}/>
       </Route>

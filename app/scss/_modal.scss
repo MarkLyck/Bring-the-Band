@@ -10,8 +10,33 @@
   align-items: center;
   z-index: 10;
   .modal {
-    background: #fff;
-    width: 60%;
+    display: flex;
+    background: $background-color;
+    color: #fff;
+    width: 80%;
+    .left {
+      width: 200px;
+      margin: 40px;
+      .detail-cover {
+        width: 200px;
+        height: 200px;
+        background-position: center;
+        background-size: cover;
+      }
+      .wrapper {
+        display: flex;
+        justify-content: space-between;
+      }
+      .spotify-url {
+        &:hover {
+          text-decoration: underline;
+          color: darken($primary-color, 5%);
+        }
+      }
+    }
+    .right {
+      width: calc(100% - 200px);
+    }
   }
 }
 

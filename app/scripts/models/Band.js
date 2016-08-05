@@ -1,7 +1,6 @@
 import $ from 'jquery'
 import Backbone from 'backbone'
 import store from '../store'
-
 import Vote from './Vote'
 
 const Band = Backbone.Model.extend({
@@ -10,7 +9,9 @@ const Band = Backbone.Model.extend({
   defaults: {
     name: '',
     imgURL: '',
-    votes: 0
+    votes: 0,
+    spotifyURL: '',
+    uri: ''
   },
   voteForBand: function() {
     console.log('VOTE FOR BAND MODEL');
