@@ -594,7 +594,8 @@ nav {
     display: flex;
     background: #222;
     color: #fff;
-    width: 80%; }
+    width: 80%;
+    animation: 500ms slideDown; }
     .modal-container .modal .left {
       width: 200px;
       margin: 40px; }
@@ -611,7 +612,17 @@ nav {
         color: #26a578; }
     .modal-container .modal .right {
       width: calc(100% - 200px); }
-
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%); }
+  25% {
+    transform: translateY(8%); }
+  50% {
+    transform: translateY(-4%); }
+  75% {
+    transform: translateY(4%); }
+  100% {
+    transform: translateY(0%); } }
 .form-modal-container {
   position: fixed;
   top: 0;
