@@ -11,13 +11,13 @@ import Login from './Login'
 
 const Header = React.createClass({
   getInitialState: function() {
-    return {authtoken: store.session.get('authtoken'), showModal: false}
+    return {authtoken: store.session.get('authtoken'), showModal: store.session.get('showModal')}
   },
   componentDidMount: function() {
     store.session.on('change', this.updateHeader)
   },
   updateHeader: function() {
-    this.setState({authtoken: store.session.get('authtoken')})
+    this.setState({authtoken: store.session.get('authtoken'), showModal: store.session.get('showModal')})
   },
   gotoTopBands: function() {
     hashHistory.push('/top-bands')

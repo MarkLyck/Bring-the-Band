@@ -10,7 +10,8 @@ const Session = Backbone.Model.extend({
   idAttribute: '_id',
   defaults: {
     username: '',
-    votedFor: []
+    votedFor: [],
+    showModal: false
   },
   parse: function(response) {
     if (response) {
@@ -54,7 +55,7 @@ const Session = Backbone.Model.extend({
       success: (model, response) => {
         localStorage.authtoken = response._kmd.authtoken
         this.unset('password')
-        // hashHistory.push('/')
+        this.set('showModal', false)
       },
       error: function(model, response) {
         console.log('ERROR: Login failed');
@@ -72,7 +73,7 @@ const Session = Backbone.Model.extend({
       success: function(model, response) {
         model.unset('password')
         localStorage.authtoken = response._kmd.authtoken
-        hashHistory.push('/')
+        this.set('showModal', false)
       },
       error: function(model, response) {
         console.log('ERROR: ', arguments);
