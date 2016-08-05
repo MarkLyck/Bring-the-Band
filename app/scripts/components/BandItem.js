@@ -4,8 +4,6 @@ import React from 'react'
 import VoteButton from './VoteButton'
 import store from '../store'
 
-//e
-
 const BandItem = React.createClass({
   getInitialState: function() {
     return {band: this.props.band}
@@ -14,9 +12,7 @@ const BandItem = React.createClass({
 
     if (this.state.band.id) {
       store.voteBands.data.on('update', this.updateVotes)
-    }
-
-    if (this.state.band.bandId) {
+    } else {
       let band = store.voteBands.data.get(this.props.band._id)
       band.on('change', this.updateVotes)
     }
@@ -62,6 +58,7 @@ const BandItem = React.createClass({
 
     let itemClasses;
     let clickHandler;
+    // console.log('bandidindex: ', store.session.get('votedFor').indexOf(this.state.band._id));
     if (store.session.get('votedFor').indexOf(this.state.band._id) === -1) {
       itemClasses = "band-item"
       clickHandler = this.voteForBand

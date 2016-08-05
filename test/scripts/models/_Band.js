@@ -12,9 +12,13 @@ describe('band model', function() {
   it('should have a voteForBand() function', () => {
     expect(band).to.have.property('voteForBand')
   })
-  
+
   it('should have a getVotes() function', () => {
     expect(band).to.have.property('getVotes')
+  })
+
+  it('should have a removeVote() function', () => {
+    expect(band).to.have.property('removeVote')
   })
 
 })

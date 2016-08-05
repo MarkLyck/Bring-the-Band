@@ -36,12 +36,27 @@ const Band = Backbone.Model.extend({
 
   },
   removeVote: function() {
+    console.log('remove vote');
     $.ajax(`https://baas.kinvey.com/appdata/${store.settings.appKey}/votes?query={"bandId":"${this.get('_id')}"}`)
     .then((response) => {
       let myVotes = response.filter((vote) => {
         if (vote.userName === store.session.get('username')) {
+          store.session.removeVoteFor(vote.bandId)
           return vote
         }
+      })
+      myVotes.forEach((vote) => {
+        $.ajax({
+          type: 'DELETE',
+          url: `https://baas.kinvey.com/appdata/${store.settings.appKey}/votes/${vote._id}`,
+          success: (r) => {
+            console.log('success: ', r);
+            // this.trigger('change')
+          },
+          error: (e) => {
+            console.error('ERROR: ', e);
+          }
+        })
       })
     })
   },

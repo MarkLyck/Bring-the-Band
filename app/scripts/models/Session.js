@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import _ from 'underscore'
 import Backbone from 'backbone'
 import {hashHistory} from 'react-router'
 
@@ -21,6 +22,11 @@ const Session = Backbone.Model.extend({
       }
     }
   },
+  clearVotes: function() {
+    this.get('votedFor').forEach(vote => {
+      this.removeVoteFor(vote)
+    })
+  },
   addVoteFor: function(id) {
     console.log('ADDING VOTE for: ', id);
 
@@ -32,11 +38,19 @@ const Session = Backbone.Model.extend({
 
     this.updateUser()
   },
-  removeVoteFrom: function(id) {
-    let votedFor = this.get('votedFor')
-    voteIndex = votedFor.indexOf(id)
-    votedFor.splice(voteIndex, 1)
-    this.set('votedFor', votedFor)
+  removeVoteFor: function(id) {
+    console.log('REMOVING VOTE from: ', id);
+
+    let updatedVotedFor = this.get('votedFor')
+    updatedVotedFor.push(id)
+    updatedVotedFor = _.without(updatedVotedFor, id);
+
+    console.log('this before remove: ', this.get('votedFor').length);
+    this.set('votedFor', updatedVotedFor)
+
+    console.log('this after remove: ', this.get('votedFor').length);
+
+    this.updateUser()
   },
   login: function(username, password) {
     this.save({username: username, password: password},
@@ -81,7 +95,8 @@ const Session = Backbone.Model.extend({
     this.fetch({
       url: `https://baas.kinvey.com/user/${store.settings.appKey}/_me`,
       success: () => {
-
+        console.log(this.get('votedFor'));
+        // this.clearVotes()
       },
       error: function(response) {
         throw new Error('FETCHING USER FAILED!')
@@ -89,9 +104,20 @@ const Session = Backbone.Model.extend({
     })
   },
   updateUser: function() {
-    this.save(null, {
+    console.log('updating user');
+    console.log('this in update: ', this.get('votedFor').length);
+    $.ajax({
       type: 'PUT',
       url: `https://baas.kinvey.com/user/${store.settings.appKey}/${this.get('userId')}`,
+      contentType: 'application/json',
+      data: JSON.stringify({votedFor: this.get('votedFor')}),
+      success: (r) => {
+        console.log('response: ', r);
+        console.log('success: ', this);
+      },
+      error: (e) => {
+        console.error('Putting user: ', e)
+      }
     })
   }
 })

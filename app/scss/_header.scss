@@ -14,6 +14,7 @@ nav {
     justify-content: center;
     height: 100%;
     width: 125px;
+    color: $unselected-color;
     &:hover {
       background: $primary-color;
       color: #fff;
@@ -40,6 +41,8 @@ nav {
 
 #search-form {
   width: 30%;
+  display: flex;
+  align-items: center;
   #search-bar {
     height: 35px;
     width: 75%;
@@ -58,6 +61,7 @@ nav {
     background: none;
     height: 100%;
     width: 10%;
+    font-size: 1.2rem;
     &:hover {
       cursor: pointer;
       color: $primary-color;

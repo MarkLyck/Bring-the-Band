@@ -36,6 +36,46 @@ describe('store', function() {
   })
 })
 
+describe('store.session', function() {
+  it('should have a login() method', () => {
+    expect(store.session).to.have.property('login')
+    expect(store.session.login).to.be.a('function');
+  })
+  it('should have a signup() method', () => {
+    expect(store.session).to.have.property('signup')
+    expect(store.session.signup).to.be.a('function');
+  })
+  it('should have a logout() method', () => {
+    expect(store.session).to.have.property('logout')
+    expect(store.session.logout).to.be.a('function');
+  })
+  it('should have a retrieve() method', () => {
+    expect(store.session).to.have.property('retrieve')
+    expect(store.session.retrieve).to.be.a('function');
+  })
+  it('should have a updateUser() method', () => {
+    expect(store.session).to.have.property('updateUser')
+    expect(store.session.updateUser).to.be.a('function');
+  })
+
+
+  it('should have a addVoteFor() method', () => {
+    expect(store.session).to.have.property('addVoteFor')
+    expect(store.session.addVoteFor).to.be.a('function');
+  })
+  it('addVoteFor() should add a vote to session.votedFor[]', () => {
+    expect(store.session).to.have.property('addVoteFor')
+    expect(store.session.addVoteFor).to.be.a('function');
+  })
+
+  it('should have a removeVoteFor() method', () => {
+    expect(store.session).to.have.property('removeVoteFor')
+    expect(store.session.removeVoteFor).to.be.a('function');
+  })
+
+
+})
+
 describe('store.searchBands', function() {
 
 })
