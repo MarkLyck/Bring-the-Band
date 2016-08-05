@@ -17,7 +17,6 @@ const BandItem = React.createClass({
     this.setState({band: store.voteBands.data.get(this.state.band._id).toJSON()})
   },
   voteForBand: function() {
-    console.log('vote for band button');
     let bandToVoteFor = store.voteBands.data.get(this.state.band._id)
     bandToVoteFor.voteForBand(this.state.band)
   },
@@ -53,7 +52,7 @@ const BandItem = React.createClass({
   },
   componentWillUnmount: function() {
     let band = store.voteBands.data.get(this.props.band._id)
-    band.on('change', this.updateVotes)
+    band.off('change', this.updateVotes)
     store.session.off('change', this.updateVotes)
   }
 })

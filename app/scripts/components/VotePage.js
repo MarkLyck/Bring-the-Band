@@ -2,7 +2,7 @@ import React from 'react'
 import _ from 'underscore'
 
 import store from '../store'
-import VoteBandItem from './VoteBandItem'
+import BandItem from './BandItem'
 
 const VotePage = React.createClass({
   getInitialState: function() {
@@ -27,10 +27,12 @@ const VotePage = React.createClass({
     if (sortedBands[0].votes === 1) {
       sortedBands = sortedBands.reverse()
     }
+    // console.log('sb: ', sortedBands);
 
 
     let topBands = sortedBands.map((band, i) => {
-      return <VoteBandItem band={band} key={i} />
+      // console.log(band);
+      return <BandItem band={band} key={band._id} />
     })
 
     return (

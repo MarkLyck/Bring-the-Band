@@ -4,40 +4,53 @@ import React from 'react'
 import VoteButton from './VoteButton'
 import store from '../store'
 
+//e
+
 const BandItem = React.createClass({
   getInitialState: function() {
     return {band: this.props.band}
   },
   componentDidMount: function() {
-    if (store.voteBands.data.getRealID(this.props.band.id)) {
-      let realId = store.voteBands.data.getRealID(this.props.band.id)
+    // console.log(this.state.band);
+    if (store.voteBands.data.getRealID(this.state.band.id)) {
       this.updateVotes()
     }
-    store.voteBands.data.on('update', this.updateVotes)
+
+    if (this.state.band.bandId) {
+      let band = store.voteBands.data.get(this.props.band._id)
+      band.on('change', this.updateVotes)
+    }
+
     store.session.on('change', this.updateVotes)
   },
   updateVotes: function() {
+    console.log('updating vote');
     if (store.voteBands.data.getRealID(this.props.band.id)) {
       let realId = store.voteBands.data.getRealID(this.props.band.id)
       this.setState({band: store.voteBands.data.get(realId).toJSON()})
+    }
+    if (this.props.band.bandId) {
+      this.setState({band: store.voteBands.data.get(this.state.band._id).toJSON()})
     }
   },
   voteForBand: function() {
     store.voteBands.data.fetch({
       success: (response) => {
-        console.log('VOTING FOR NEW BAND');
         if(!store.voteBands.data.bandExists(this.state.band.name)) {
           store.voteBands.data.createBand(this.state.band, store.session)
         } else {
-          console.log('VOTING FOR EXISTING BAND');
-          let bandToVoteFor = store.voteBands.data.get(this.state.band._id)
-          bandToVoteFor.voteForBand(this.state.band)
+          let band = store.voteBands.data.get(this.state.band._id)
+          band.voteForBand()
         }
       },
       error: function(response) {
         console.error('Fetching voteBands: ', response);
       }
     }, {wait: true})
+  },
+  removeVoteFromBand: function() {
+    let band = store.voteBands.data.get(this.state.band._id)
+    band.removeVote()
   },
   render: function() {
     if (!this.state.band) {
@@ -54,6 +67,7 @@ const BandItem = React.createClass({
       clickHandler = this.voteForBand
     } else {
       itemClasses = "voted-for band-item"
+      clickHandler = this.removeVoteFromBand
     }
 
     return (
@@ -67,6 +81,10 @@ const BandItem = React.createClass({
     )
   },
   componentWillUnmount: function() {
+    if (store.voteBands.data.get(this.props.band._id)) {
+      let band = store.voteBands.data.get(this.props.band._id)
+      band.off('change', this.updateVotes)
+    }
     store.voteBands.data.off('update', this.updateVotes)
     store.session.off('update', this.updateVotes)
   }

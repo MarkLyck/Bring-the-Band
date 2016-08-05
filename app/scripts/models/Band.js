@@ -12,7 +12,7 @@ const Band = Backbone.Model.extend({
     imgURL: '',
     votes: 0
   },
-  voteForBand: function(band) {
+  voteForBand: function() {
     console.log('VOTE FOR BAND MODEL');
 
     let votes = this.get('votes')
@@ -22,7 +22,7 @@ const Band = Backbone.Model.extend({
     let vote = new Vote()
 
     vote.save({
-      bandId: band._id,
+      bandId: this.get('_id'),
       userName: store.session.get('username')
     }, {
       success: (voteResponse) => {
@@ -34,6 +34,16 @@ const Band = Backbone.Model.extend({
       }
     })
 
+  },
+  removeVote: function() {
+    $.ajax(`https://baas.kinvey.com/appdata/${store.settings.appKey}/votes?query={"bandId":"${this.get('_id')}"}`)
+    .then((response) => {
+      let myVotes = response.filter((vote) => {
+        if (vote.userName === store.session.get('username')) {
+          return vote
+        }
+      })
+    })
   },
   getVotes: function() {
     $.ajax(`https://baas.kinvey.com/appdata/${store.settings.appKey}/votes?query={"bandId":"${this.get('_id')}"}`)
