@@ -497,22 +497,12 @@ nav {
   flex-wrap: wrap; }
   .band-list .voted-for .cover::after {
     content: '\f164';
-    font-family: FontAwesome;
     color: #18674b;
-    font-size: 5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #2bba87;
-    opacity: 0.9;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    position: absolute; }
+    opacity: 0.9; }
   .band-list .voted-for .cover:hover::after {
     content: '\f165';
-    background: #da1354; }
+    background: #da1354;
+    color: #fff; }
   .band-list .voted-for .bottom-section .votes {
     color: #2bba87; }
 
@@ -527,11 +517,15 @@ nav {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    position: relative;
-    transition: 1s;
-    -webkit-transition: 1s; }
-    .band-item .cover:hover::after {
-      cursor: pointer;
+    position: relative; }
+    .band-item .cover::after {
+      content: '';
+      opacity: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      position: absolute;
       content: '\f164';
       font-family: FontAwesome;
       color: #fff;
@@ -540,14 +534,10 @@ nav {
       justify-content: center;
       align-items: center;
       background: #2bba87;
-      opacity: 0.9;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      position: absolute;
-      transition: 1s;
-      -webkit-transition: 1s; }
+      transition: 200ms; }
+    .band-item .cover:hover::after {
+      cursor: pointer;
+      opacity: 0.9; }
   .band-item .bottom-section {
     display: flex;
     justify-content: space-between;
