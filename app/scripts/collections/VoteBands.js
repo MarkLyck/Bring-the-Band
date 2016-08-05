@@ -31,10 +31,11 @@ const VoteBands = Backbone.Collection.extend({
     this.create({
       name: band.name,
       imgURL: band.imgURL,
-      bandId: band.id,
-      votes: 1
+      bandId: band.id
     }, {
       success: (bandResponse) => {
+        let band = this.get(bandResponse.get('_id'))
+        band.set('votes', 1)
         session.addVoteFor(bandResponse.get('_id'))
         let vote = new Vote()
 

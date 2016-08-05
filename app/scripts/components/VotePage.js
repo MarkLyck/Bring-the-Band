@@ -24,7 +24,7 @@ const VotePage = React.createClass({
     }
 
     let sortedBands = _.sortBy(this.state.bands, band => band.votes)
-    if (sortedBands[0].votes === 1) {
+    if (sortedBands[0].votes === 0) {
       sortedBands = sortedBands.reverse()
     }
     // console.log('sb: ', sortedBands);
