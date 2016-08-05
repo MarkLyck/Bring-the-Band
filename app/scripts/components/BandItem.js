@@ -33,6 +33,10 @@ const BandItem = React.createClass({
     }
   },
   voteForBand: function() {
+    if (store.session.get('username') === 'anom') {
+      return null
+    }
+
     this.setState({votes: (this.state.votes + 1)})
 
     if(!store.voteBands.data.bandExists(this.state.band.name)) {
