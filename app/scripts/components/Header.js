@@ -30,6 +30,7 @@ const Header = React.createClass({
   },
   closeModal: function(e) {
     console.log('close modal');
+    store.session.set('showModal', false)
     if (e) {
       if (_.toArray(e.target.classList).indexOf('form-modal-container') !== -1) {
         this.setState({showModal: false})

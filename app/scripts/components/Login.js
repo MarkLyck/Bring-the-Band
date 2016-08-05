@@ -12,11 +12,6 @@ const Login = React.createClass({
     store.session.login(username, password)
     this.props.closeModal()
   },
-  checkIfEnter: function(e) {
-    if (e.which === 13) {
-      this.login()
-    }
-  },
   render: function() {
     return (
       <form onSubmit={this.login} className="form-modal login">
