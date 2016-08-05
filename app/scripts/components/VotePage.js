@@ -27,11 +27,8 @@ const VotePage = React.createClass({
     if (sortedBands[0].votes === 0) {
       sortedBands = sortedBands.reverse()
     }
-    // console.log('sb: ', sortedBands);
-
 
     let topBands = sortedBands.map((band, i) => {
-      // console.log(band);
       return <BandItem band={band} key={band._id} />
     })
 

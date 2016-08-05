@@ -14,6 +14,7 @@ const Band = Backbone.Model.extend({
   },
   voteForBand: function() {
     console.log('VOTE FOR BAND MODEL');
+    store.session.addVoteFor(this.get('_id'))
 
     let votes = this.get('votes')
     votes++
@@ -27,7 +28,6 @@ const Band = Backbone.Model.extend({
     }, {
       success: (voteResponse) => {
         this.trigger('update')
-        store.session.addVoteFor(this.get('_id'))
       },
       error: function() {
         throw new Error('CREATING VOTE FAILED')
@@ -39,19 +39,18 @@ const Band = Backbone.Model.extend({
     console.log('remove vote');
     $.ajax(`https://baas.kinvey.com/appdata/${store.settings.appKey}/votes?query={"bandId":"${this.get('_id')}"}`)
     .then((response) => {
-      let myVotes = response.filter((vote) => {
+      response.filter(vote => {
         if (vote.userName === store.session.get('username')) {
-          store.session.removeVoteFor(vote.bandId)
           return vote
         }
-      })
-      myVotes.forEach((vote) => {
+      }).forEach(vote => {
         $.ajax({
           type: 'DELETE',
           url: `https://baas.kinvey.com/appdata/${store.settings.appKey}/votes/${vote._id}`,
           success: (r) => {
             console.log('success: ', r);
-            // this.trigger('change')
+            this.set('votes', (this.get('votes') -1))
+            store.session.removeVoteFor(vote.bandId)
           },
           error: (e) => {
             console.error('ERROR: ', e);

@@ -22,19 +22,15 @@ const Session = Backbone.Model.extend({
       }
     }
   },
-  clearVotes: function() {
-    this.get('votedFor').forEach(vote => {
-      this.removeVoteFor(vote)
-    })
-  },
+  // clearVotes: function() {
+  //   this.get('votedFor').forEach(vote => {
+  //     this.removeVoteFor(vote)
+  //   })
+  // },
   addVoteFor: function(id) {
-    console.log('ADDING VOTE for: ', id);
-
     let votedFor = this.get('votedFor')
     votedFor.push(id)
     this.set('votedFor', votedFor)
-
-    console.log('Updated votedFor: ', this.get('votedFor'));
 
     this.updateUser()
   },
@@ -95,8 +91,6 @@ const Session = Backbone.Model.extend({
     this.fetch({
       url: `https://baas.kinvey.com/user/${store.settings.appKey}/_me`,
       success: () => {
-        console.log(this.get('votedFor'));
-        // this.clearVotes()
       },
       error: function(response) {
         throw new Error('FETCHING USER FAILED!')
@@ -104,16 +98,12 @@ const Session = Backbone.Model.extend({
     })
   },
   updateUser: function() {
-    console.log('updating user');
-    console.log('this in update: ', this.get('votedFor').length);
     $.ajax({
       type: 'PUT',
       url: `https://baas.kinvey.com/user/${store.settings.appKey}/${this.get('userId')}`,
       contentType: 'application/json',
       data: JSON.stringify({votedFor: this.get('votedFor')}),
       success: (r) => {
-        console.log('response: ', r);
-        console.log('success: ', this);
       },
       error: (e) => {
         console.error('Putting user: ', e)
