@@ -23,11 +23,13 @@ const Session = Backbone.Model.extend({
       }
     }
   },
+
   // clearVotes: function() {
   //   this.get('votedFor').forEach(vote => {
   //     this.removeVoteFor(vote)
   //   })
   // },
+
   addVoteFor: function(id) {
     let votedFor = this.get('votedFor')
     votedFor.push(id)

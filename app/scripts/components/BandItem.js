@@ -34,7 +34,6 @@ const BandItem = React.createClass({
   },
   voteForBand: function() {
     if (store.session.get('username') === 'anom') {
-      // hashHistory.push('/signup')
       return null
     }
 
