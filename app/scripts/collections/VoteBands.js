@@ -30,7 +30,8 @@ const VoteBands = Backbone.Collection.extend({
       name: band.name,
       imgURL: band.imgURL,
       bandId: band.id,
-      spotifyURL: band.spotifyURL
+      spotifyURL: band.spotifyURL,
+      uri: band.uri
     }, {
       success: (bandResponse) => {
         let band = this.get(bandResponse.get('_id'))

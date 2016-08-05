@@ -35,7 +35,9 @@ nav {
     height: 100%;
     display: flex;
     align-items: center;
-
+    #logout-btn:hover {
+      background: $bad-color;
+    }
   }
 }
 
@@ -108,5 +110,12 @@ nav {
       border-radius: 50px;
       font-weight: bold;
     }
+  }
+}
+
+@media (max-width: 1000px) {
+  #hero {
+    background-size: cover;
+    background-position: center right;
   }
 }

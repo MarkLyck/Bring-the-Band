@@ -99,15 +99,6 @@ const BandItem = React.createClass({
 
     let modal;
     if (this.state.showBand) {
-      let iFrame;
-      if (this.state.albumURI) {
-        iFrame = <iframe src={`https://embed.spotify.com/?uri=${this.state.albumURI}`} width="100%" height="380" frameBorder="0" allowTransparency="true"></iframe>
-      }
-      let followWidget;
-      if (this.state.band.uri) {
-        followWidget = <iframe src={`https://embed.spotify.com/follow/1/?uri=${this.state.band.uri}&size=basic&theme=light`} width="200" height="25" scrolling="no" frameBorder="0" style={{border:'none', overflow:'hidden'}} allowTransparency="true"></iframe>
-      }
-
       modal = (
         <Modal closeModal={this.closeModal}>
           <AlbumModal band={this.state.band} votes={this.state.votes} albumURI={this.state.albumURI} urlStyle={urlStyle}/>

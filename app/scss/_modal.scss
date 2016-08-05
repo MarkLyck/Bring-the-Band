@@ -14,34 +14,6 @@
     background: $background-color;
     color: #fff;
     width: 80%;
-    .album-modal {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      .left {
-        width: 200px;
-        margin: 40px;
-        .detail-cover {
-          width: 200px;
-          height: 200px;
-          background-position: center;
-          background-size: cover;
-        }
-        .wrapper {
-          display: flex;
-          justify-content: space-between;
-        }
-        .spotify-url {
-          &:hover {
-            text-decoration: underline;
-            color: darken($primary-color, 5%);
-          }
-        }
-      }
-      .right {
-        width: calc(100% - 200px);
-      }
-    }
     animation: 500ms slideDown;
     @keyframes slideDown {
       0% {
@@ -60,6 +32,42 @@
         transform: translateY(0%);
       }
     }
+  }
+}
+
+.album-modal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  .left {
+    width: 200px;
+    margin: 40px;
+    .detail-cover {
+      width: 200px;
+      height: 200px;
+      background-position: center;
+      background-size: cover;
+    }
+    .wrapper {
+      display: flex;
+      justify-content: space-between;
+      .votes {
+        display: flex;
+        justify-content: flex-end;
+        i {
+          margin-left: 5px;
+        }
+      }
+    }
+    .spotify-url {
+      &:hover {
+        text-decoration: underline;
+        color: darken($primary-color, 5%);
+      }
+    }
+  }
+  .right {
+    width: calc(100% - 200px);
   }
 }
 

@@ -48,7 +48,7 @@ const Header = React.createClass({
       navLinks = (
         <div id="nav-links">
           <Link to="/top-bands"><i className="fa fa-star" aria-hidden="true"></i> Top Bands</Link>
-          <a href="#" onClick={store.session.logout.bind(store.session)}><i className="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+          <a href="#" id="logout-btn" onClick={store.session.logout.bind(store.session)}><i className="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
         </div>
       )
     }
