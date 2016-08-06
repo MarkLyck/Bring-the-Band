@@ -64,9 +64,10 @@ const Band = Backbone.Model.extend({
     $.ajax(`https://baas.kinvey.com/appdata/${store.settings.appKey}/votes?query={"bandId":"${this.get('_id')}"}`)
     .then((response) => {
       this.set('votes', response.length)
-      // store.voteBands.data.trigger('update')
       store.voteBands.foundVotes++
+
       if (store.voteBands.foundVotes === store.voteBands.data.models.length) {
+        console.log('GOT ALL VOTES');
         store.voteBands.data.trigger('update')
       }
     })

@@ -9,23 +9,27 @@ const BandItem = React.createClass({
     return {band: this.props.band, votes: this.props.band.votes, showBand: false, albumURI: ''}
   },
   componentDidMount: function() {
+    store.voteBands.data.on('update', this.updateVotes)
     if (this.state.band.id) {
-      store.voteBands.data.on('update', this.updateVotes)
-    } else if (store.voteBands.data.get(this.props.band._id)) {
-      let band = store.voteBands.data.get(this.props.band._id)
+
+    } else if (store.voteBands.data.get(this.state.band._id)) {
+      console.log('listening for band');
+      let band = store.voteBands.data.get(this.state.band._id)
       band.on('change', this.updateVotes)
     }
     store.session.on('change', this.updateVotes)
   },
   updateVotes: function() {
     console.log('updating vote');
-    if (store.voteBands.data.getRealID(this.props.band.id)) {
-      let realId = store.voteBands.data.getRealID(this.props.band.id)
+
+    if (store.voteBands.data.getRealID(this.state.band.id)) {
+      let realId = store.voteBands.data.getRealID(this.state.band.id)
       this.setState({
         band: store.voteBands.data.get(realId).toJSON(),
         votes: store.voteBands.data.get(realId).toJSON().votes
       })
-    } else if (this.props.band.bandId) {
+    } else if (this.state.band.bandId) {
+      console.log('THIS RUNS INSTEAD');
       this.setState({
         band: store.voteBands.data.get(this.state.band._id).toJSON(),
         votes: store.voteBands.data.get(this.state.band._id).toJSON().votes
@@ -42,12 +46,23 @@ const BandItem = React.createClass({
 
     this.setState({votes: (this.state.votes + 1)})
 
-    if(store.voteBands.data.get(this.state.band._id)) {
-      let band = store.voteBands.data.get(this.state.band._id)
-      band.voteForBand()
+    if (this.state.band._id) {
+      if(store.voteBands.data.get(this.state.band._id)) {
+        let band = store.voteBands.data.get(this.state.band._id)
+        band.voteForBand()
+      } else {
+        store.voteBands.data.createBand(this.state.band, store.session)
+      }
     } else {
-      store.voteBands.data.createBand(this.state.band, store.session)
+      if (store.voteBands.data.getRealID(this.props.band.id)) {
+        let realId = store.voteBands.data.getRealID(this.props.band.id)
+        let band = store.voteBands.data.get(realId)
+        band.voteForBand()
+      } else {
+        store.voteBands.data.createBand(this.state.band, store.session)
+      }
     }
+
   },
   removeVoteFromBand: function() {
     this.setState({votes: (this.state.votes - 1)})

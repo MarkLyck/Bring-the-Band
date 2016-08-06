@@ -12,6 +12,7 @@ const SearchPage = React.createClass({
     let searchTerm = this.props.params.searchTerm
     store.searchBands.data.searchFor(searchTerm, store)
 
+    store.voteBands.foundVotes = 0
     store.voteBands.data.fetch({success: store.voteBands.data.getModelVotes.bind(store.voteBands.data)})
   },
   updateList: function() {

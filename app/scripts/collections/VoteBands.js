@@ -9,7 +9,9 @@ const VoteBands = Backbone.Collection.extend({
   getRealID: function(bandId) {
     let realId = ''
     this.models.forEach(band => {
+      // console.log(band.get('bandId') + ' | ' + bandId);
       if (band.get('bandId') === bandId) {
+
         realId = band.get('_id')
       }
     })

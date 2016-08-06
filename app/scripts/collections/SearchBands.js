@@ -15,15 +15,17 @@ const SearchBands = Backbone.Collection.extend({
       },
       success: (response) => {
         response.artists.items.forEach(artist => {
+          let imgURL = 'assets/images/album-cover.jpg'
           if (artist.images[0]) {
-            this.add({
-              name: artist.name,
-              id: artist.id,
-              imgURL: artist.images[0].url,
-              spotifyURL: artist.external_urls.spotify,
-              uri: artist.uri
-            })
+            imgURL = artist.images[0].url
           }
+          this.add({
+            name: artist.name,
+            id: artist.id,
+            imgURL: imgURL,
+            spotifyURL: artist.external_urls.spotify,
+            uri: artist.uri
+          })
         })
 
         store.searchBands.next = response.artists.next
@@ -49,15 +51,17 @@ const SearchBands = Backbone.Collection.extend({
         success: (response) => {
           console.log(response);
           response.artists.items.forEach(artist => {
+            let imgURL = 'assets/images/album-cover.jpg'
             if (artist.images[0]) {
-              this.add({
-                name: artist.name,
-                id: artist.id,
-                imgURL: artist.images[0].url,
-                spotifyURL: artist.external_urls.spotify,
-                uri: artist.uri
-              })
+              imgURL = artist.images[0].url
             }
+            this.add({
+              name: artist.name,
+              id: artist.id,
+              imgURL: imgURL,
+              spotifyURL: artist.external_urls.spotify,
+              uri: artist.uri
+            })
           })
           store.searchBands.next = response.artists.next
           store.searchBands.offset += 20
