@@ -70,6 +70,9 @@ const Band = Backbone.Model.extend({
         store.voteBands.data.trigger('update')
       }
     })
+    .fail(() => {
+      store.voteBands.foundVotes++
+    })
   }
 })
 
