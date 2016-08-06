@@ -88,6 +88,7 @@ const Session = Backbone.Model.extend({
     })
     localStorage.removeItem('authtoken')
     this.clear()
+    this.trigger('change')
   },
   retrieve: function() {
     this.fetch({

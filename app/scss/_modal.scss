@@ -40,15 +40,16 @@
   height: 100%;
   display: flex;
   .left {
-    width: 200px;
-    margin: 40px;
+    width: 275px;
+    // margin: 40px;
     .detail-cover {
-      width: 200px;
-      height: 200px;
+      width: 275px;
+      height: 275px;
       background-position: center;
       background-size: cover;
     }
     .wrapper {
+      margin: 0 20px;
       display: flex;
       justify-content: space-between;
       .votes {
@@ -59,15 +60,12 @@
         }
       }
     }
-    .spotify-url {
-      &:hover {
-        text-decoration: underline;
-        color: darken($primary-color, 5%);
-      }
+    iframe {
+      margin: 0 20px;
     }
   }
   .right {
-    width: calc(100% - 200px);
+    width: calc(100% - 275px);
     background: #181818;
   }
 }
