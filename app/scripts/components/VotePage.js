@@ -21,6 +21,12 @@ const VotePage = React.createClass({
     if (!this.state.bands[0]) {
       return null
     }
+    if (store.voteBands.foundVotes !== store.voteBands.data.models.length) {
+      console.log(this.state);
+      return null
+    }
+
+    console.log(this.state.bands);
 
     let sortedBands = _.sortBy(this.state.bands, band => band.votes)
     if (sortedBands[0].votes === 0) {

@@ -6,7 +6,7 @@ import AlbumModal from './AlbumModal'
 
 const BandItem = React.createClass({
   getInitialState: function() {
-    return {band: this.props.band, votes: 0, showBand: false, albumURI: ''}
+    return {band: this.props.band, votes: this.props.band.votes, showBand: false, albumURI: ''}
   },
   componentDidMount: function() {
     if (this.state.band.id) {

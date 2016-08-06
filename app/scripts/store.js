@@ -13,7 +13,8 @@ let store = {
     total: 0
   },
   voteBands: {
-    data: new VoteBands()
+    data: new VoteBands(),
+    foundVotes: 0
   },
   albums: new Albums(),
   anom: {

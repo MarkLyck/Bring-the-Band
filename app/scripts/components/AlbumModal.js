@@ -4,7 +4,7 @@ const AlbumModal = React.createClass({
   render: function() {
     let iFrame;
     if (this.props.albumURI) {
-      iFrame = <iframe src={`https://embed.spotify.com/?uri=${this.props.albumURI}`} width="100%" height="380" frameBorder="0" allowTransparency="true"></iframe>
+      iFrame = <iframe src={`https://embed.spotify.com/?uri=${this.props.albumURI}`} width="100%" height="400" frameBorder="0" allowTransparency="true"></iframe>
     }
     let followWidget;
     if (this.props.band.uri) {
