@@ -632,14 +632,14 @@ nav {
   height: 100%;
   display: flex; }
   .album-modal .left {
-    width: 200px;
-    margin: 40px; }
+    width: 275px; }
     .album-modal .left .detail-cover {
-      width: 200px;
-      height: 200px;
+      width: 275px;
+      height: 275px;
       background-position: center;
       background-size: cover; }
     .album-modal .left .wrapper {
+      margin: 0 20px;
       display: flex;
       justify-content: space-between; }
       .album-modal .left .wrapper .votes {
@@ -647,11 +647,10 @@ nav {
         justify-content: flex-end; }
         .album-modal .left .wrapper .votes i {
           margin-left: 5px; }
-    .album-modal .left .spotify-url:hover {
-      text-decoration: underline;
-      color: #26a578; }
+    .album-modal .left iframe {
+      margin: 0 20px; }
   .album-modal .right {
-    width: calc(100% - 200px);
+    width: calc(100% - 275px);
     background: #181818; }
 
 .form-modal-container {
