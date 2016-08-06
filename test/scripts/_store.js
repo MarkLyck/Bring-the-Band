@@ -76,9 +76,17 @@ describe('store.session', function() {
 
 })
 
+
+
+
 describe('store.searchBands', function() {
 
 })
+
+
+
+
+
 
 describe('store.voteBands', function() {
   it('should have data', () => {
@@ -88,16 +96,25 @@ describe('store.voteBands', function() {
     expect(store.voteBands.data).to.have.property('createBand')
   })
 
-  it('running createBand() should create a band with a vote', () => {
+  it('running createBand() should create a band', () => {
     expect(store.voteBands.data.models).to.have.length(0)
     store.voteBands.data.createBand(testBand, store.session)
     expect(store.voteBands.data.models).to.have.length(1)
-    expect(store.voteBands.data.models[0].get('votes')).to.equal(1)
+    // To test wether it got a vote needs ASYNC
   })
 
+  // ASYNC
   // it('running createBand() should also update session.votedFor', () => {
   //   expect(store.session.get('votedFor')).to.have.length(1)
   // })
+
+  it('should have a getRealID() method', () => {
+    expect(store.voteBands.data).to.have.property('getRealID')
+    expect(store.voteBands.data.getRealID).to.be.a('function');
+    // To test if this works need async.
+  })
+
+
 
   it('should have a getModelVotes() method', () => {
     expect(store.voteBands.data).to.have.property('getModelVotes')

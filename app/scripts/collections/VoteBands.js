@@ -11,43 +11,48 @@ const VoteBands = Backbone.Collection.extend({
     this.models.forEach(band => {
       // console.log(band.get('bandId') + ' | ' + bandId);
       if (band.get('bandId') === bandId) {
-
         realId = band.get('_id')
       }
     })
     return realId
   },
   createBand: function(band, session) {
-    console.log('creating new Album');
-    this.create({
-      name: band.name,
-      imgURL: band.imgURL,
-      bandId: band.id,
-      spotifyURL: band.spotifyURL,
-      uri: band.uri
-    }, {
-      success: (bandResponse) => {
-        let band = this.get(bandResponse.get('_id'))
-        band.set('votes', 1)
-        session.addVoteFor(bandResponse.get('_id'))
-        let vote = new Vote()
+    // return new Promise((resolve, reject) => {
+      console.log('creating band');
+      this.create({
+        name: band.name,
+        imgURL: band.imgURL,
+        bandId: band.id,
+        spotifyURL: band.spotifyURL,
+        uri: band.uri
+      }, {
+        success: (bandResponse) => {
+          let band = this.get(bandResponse.get('_id'))
+          band.set('votes', 1)
+          session.addVoteFor(bandResponse.get('_id'))
+          let vote = new Vote()
 
-        vote.save({
-          bandId: bandResponse.get('_id'),
-          userName: session.get('username')
-        }, {
-          success: (voteResponse) => {
-            this.trigger('update')
-          },
-          error: function() {
-            console.error('Creating vote failed')
-          }
-        })
-      },
-      error: function() {
-        console.error('Creating band failed')
-      }
-    }, {wait: true})
+          vote.save({
+            bandId: bandResponse.get('_id'),
+            userName: session.get('username')
+          }, {
+            success: (voteResponse) => {
+              // resolve()
+              this.trigger('update')
+            },
+            error: function() {
+              console.error('Creating vote failed')
+              // reject()
+            }
+          })
+        },
+        error: function(e) {
+          console.error('Creating band failed', e)
+          // reject()
+        }
+      }, {wait: true})
+    // })
+
   },
   getModelVotes: function() {
     console.log('Getting model votes');

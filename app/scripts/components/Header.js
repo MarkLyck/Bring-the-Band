@@ -9,6 +9,9 @@ import SearchBar from './SearchBar'
 import Signup from './Signup'
 import Login from './Login'
 
+import Modal from './Modal'
+import TicketModal from './TicketModal'
+
 const Header = React.createClass({
   getInitialState: function() {
     return {authtoken: store.session.get('authtoken'), showModal: store.session.get('showModal')}
@@ -36,6 +39,10 @@ const Header = React.createClass({
       }
     }
   },
+  getTickets: function() {
+    console.log('GET TICKETS');
+    store.session.set('showModal', 'tickets')
+  },
   render: function() {
     let navLinks = (
       <div id="nav-links">
@@ -58,6 +65,22 @@ const Header = React.createClass({
       modal = <div className="form-modal-container" onClick={this.closeModal}><Signup closeModal={this.closeModal}/></div>
     } else if (this.state.showModal === 'login') {
       modal = <div className="form-modal-container" onClick={this.closeModal}><Login closeModal={this.closeModal}/></div>
+    } else if (this.state.showModal === 'tickets') {
+      modal = <Modal onClick={this.closeModal}><TicketModal closeModal={this.closeModal}/></Modal>
+    }
+
+    let buttons = (
+      <div className="wrapper">
+        <button onClick={this.gotoTopBands}>See the top Bands!</button>
+        <button onClick={this.showSignup}>Sign up now!</button>
+      </div>
+    )
+    if (localStorage.authtoken) {
+      buttons = (
+        <div className="wrapper">
+          <button onClick={this.getTickets}>Get your tickets now!</button>
+        </div>
+      )
     }
 
     return (
@@ -71,10 +94,7 @@ const Header = React.createClass({
           <div className="content">
             <h1 id="main-title">Bring the Band!</h1>
             <h2 id="subtitle">Vote for your favorite bands to attend the festival!</h2>
-            <div className="wrapper">
-              <button onClick={this.gotoTopBands}>See the top Bands!</button>
-              <button onClick={this.showSignup}>Sign up now!</button>
-            </div>
+            {buttons}
           </div>
         </div>
         {modal}
