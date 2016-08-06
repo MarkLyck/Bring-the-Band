@@ -68,11 +68,13 @@ const Header = React.createClass({
         {navLinks}
         </nav>
         <div id="hero">
-          <h1 id="main-title">Bring the Band!</h1>
-          <h2 id="subtitle">Vote for your favorite bands to attend the festival!</h2>
-          <div className="wrapper">
-            <button onClick={this.gotoTopBands}>See the top Bands!</button>
-            <button onClick={this.showSignup}>Sign up now!</button>
+          <div className="content">
+            <h1 id="main-title">Bring the Band!</h1>
+            <h2 id="subtitle">Vote for your favorite bands to attend the festival!</h2>
+            <div className="wrapper">
+              <button onClick={this.gotoTopBands}>See the top Bands!</button>
+              <button onClick={this.showSignup}>Sign up now!</button>
+            </div>
           </div>
         </div>
         {modal}
