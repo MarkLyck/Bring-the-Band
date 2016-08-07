@@ -32,9 +32,8 @@ const Header = React.createClass({
     store.session.set('showModal', 'login')
   },
   closeModal: function(e) {
-    console.log('close modal');
     if (e) {
-      if (_.toArray(e.target.classList).indexOf('form-modal-container') !== -1) {
+      if (_.toArray(e.target.classList).indexOf('modal-container') !== -1) {
         store.session.set('showModal', false)
       }
     }
@@ -66,7 +65,10 @@ const Header = React.createClass({
     } else if (this.state.showModal === 'login') {
       modal = <div className="form-modal-container" onClick={this.closeModal}><Login closeModal={this.closeModal}/></div>
     } else if (this.state.showModal === 'tickets') {
-      modal = <Modal onClick={this.closeModal}><TicketModal closeModal={this.closeModal}/></Modal>
+      let modalStyles = {
+        maxWidth: "600px"
+      }
+      modal = <Modal closeModal={this.closeModal} modalStyles={modalStyles}><TicketModal closeModal={this.closeModal}/></Modal>
     }
 
     let buttons = (

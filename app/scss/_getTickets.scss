@@ -1,0 +1,91 @@
+.get-tickets-container {
+  display: flex;
+  width: 100%;
+  .left {
+    .tickets-icon {
+      width: 250px;
+      height: 250px;
+      background-image: url('assets/images/tickets.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      transform: scale(1.5);
+    }
+    .buy-tickets {
+      padding-left: 40px;
+    }
+    .wrapper {
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      input {
+        width: 20px;
+        margin-left: 10px;
+        padding: 0 10px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid darken($header-color, 10%);
+        background: darken($header-color, 5%);
+        color: #fff;
+        // box-sizing: border-box;
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    background: #181818;
+    width: 100%;
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      // padding-top: 20px;
+      .input-container {
+        width: 80%;
+        position: relative;
+        i {
+          position: absolute;
+          left: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        input {
+          padding: 20px 0 20px 35px;
+          // height: 40px;
+          border-radius: 5px;
+          border: 1px solid darken($header-color, 10%);
+          background: darken($header-color, 5%);
+          color: #fff;
+          width: 100%;
+          box-sizing: border-box;
+        }
+      }
+      .email {
+        margin: 40px 0;
+      }
+      .wrapper {
+        width: 80%;
+        display: flex;
+        margin-bottom: 40px;
+        .input-container {
+          width: 50%;
+        }
+      }
+      .pay-button {
+        background: $primary-color;
+        border: none;
+        border-radius: 5px;
+        padding: 20px;
+        color: #fff;
+        width: 80%;
+        box-sizing: border-box;
+        margin-bottom: 40px;
+        &:hover {
+          cursor: pointer;
+          background: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+}
