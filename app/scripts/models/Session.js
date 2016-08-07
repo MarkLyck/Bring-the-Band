@@ -64,6 +64,7 @@ const Session = Backbone.Model.extend({
     })
   },
   signup: function(username, password) {
+    this.clear()
     store.session.save({
       username: username,
       password: password,
@@ -71,7 +72,7 @@ const Session = Backbone.Model.extend({
     },
     {
       url: `https://baas.kinvey.com/user/${store.settings.appKey}/`,
-      success: function(model, response) {
+      success: (model, response) => {
         model.unset('password')
         localStorage.authtoken = response._kmd.authtoken
         this.set('showModal', false)

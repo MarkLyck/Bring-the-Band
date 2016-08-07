@@ -5,7 +5,8 @@ import store from '../store'
 import Modal from './Modal'
 
 const Login = React.createClass({
-  login: function() {
+  login: function(e) {
+    e.preventDefault()
     console.log('this: ', this);
     let username = this.refs.username.value
     let password = this.refs.password.value

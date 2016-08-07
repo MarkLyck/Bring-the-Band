@@ -5,7 +5,8 @@ import Modal from './Modal'
 
 
 const Signup = React.createClass({
-  signup: function() {
+  signup: function(e) {
+    e.preventDefault()
     console.log('this: ', this);
     let username = this.refs.username.value
     let password = this.refs.password.value
