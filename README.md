@@ -12,7 +12,6 @@
 - add fetching status
 
 ### TODO
-- Improve login / signup forms to include icons for username, password, verify password
 - Improve login / signup with handling invalid logins / usernames / passwords
 - Finish GetTickets modal.
 - Implement stripe payment system

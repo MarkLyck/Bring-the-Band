@@ -73,6 +73,31 @@
       cursor: pointer;
     }
   }
+
+}
+
+.shake {
+  animation: 300ms shake;
+  @keyframes shake {
+  	0% {
+  		transform: translateX(-5%);
+  	}
+  	25%{
+  		transform: translateX(5%);
+  	}
+  	50%{
+  		transform: translateX(-5%);
+  	}
+  	75%{
+  		transform: translateX(5%);
+  	}
+  	100% {
+  		transform: translateX(0%);
+  	}
+  }
+}
+
+.slide-in {
   animation: 500ms slideDown;
   @keyframes slideDown {
   	0% {

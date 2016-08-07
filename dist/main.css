@@ -689,8 +689,7 @@ nav {
   color: #fff;
   border-radius: 3px;
   width: 250px;
-  z-index: 5;
-  animation: 500ms slideDown; }
+  z-index: 5; }
   .form-modal h3 {
     padding: 0 20px; }
   .form-modal input {
@@ -741,6 +740,22 @@ nav {
     .form-modal input[type="submit"]:hover {
       background: #26a578;
       cursor: pointer; }
+
+.shake {
+  animation: 300ms shake; }
+@keyframes shake {
+  0% {
+    transform: translateX(-5%); }
+  25% {
+    transform: translateX(5%); }
+  50% {
+    transform: translateX(-5%); }
+  75% {
+    transform: translateX(5%); }
+  100% {
+    transform: translateX(0%); } }
+.slide-in {
+  animation: 500ms slideDown; }
 @keyframes slideDown {
   0% {
     transform: translateY(-100%); }
