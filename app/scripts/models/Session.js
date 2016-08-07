@@ -89,7 +89,13 @@ const Session = Backbone.Model.extend({
     })
     localStorage.removeItem('authtoken')
     this.clear()
+    this.set({
+      username: 'anom',
+      authtoken: store.anom.authtoken,
+      votedFor: []
+    })
     this.trigger('change')
+    store.voteBands.data.trigger('update')
   },
   retrieve: function() {
     this.fetch({

@@ -103,6 +103,7 @@ const BandItem = React.createClass({
 
     let itemClasses;
     let clickHandler;
+    console.log('store: ', store.session.toJSON());
     if (store.session.get('votedFor').indexOf(this.state.band._id) === -1) {
       itemClasses = "band-item"
       clickHandler = this.voteForBand
