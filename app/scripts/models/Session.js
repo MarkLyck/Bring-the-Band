@@ -94,7 +94,6 @@ const Session = Backbone.Model.extend({
       authtoken: store.anom.authtoken,
       votedFor: []
     })
-    this.trigger('change')
   },
   retrieve: function() {
     this.fetch({
