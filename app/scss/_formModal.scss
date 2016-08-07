@@ -1,0 +1,94 @@
+.form-modal {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 85px;
+  right: 15px;
+  background: $secondary-color;
+  color: #fff;
+  border-radius: 3px;
+  width: 250px;
+  z-index: 5;
+  h3 {
+    padding: 0 20px;
+  }
+  input {
+    padding: 20px;
+    padding-left: 35px;
+    border: none;
+    border-top: 1px solid darken($header-color, 10%);
+    background: darken($header-color, 5%);
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  div {
+    position: relative;
+    width: 100%;
+  }
+  #username {
+    &::before {
+      content: '\f007';
+      font-family: FontAwesome;
+      color: darken(#fff, 50%);
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-55%);
+      z-index: 2;
+    }
+  }
+  #password {
+    &::before {
+      content: '\f023';
+      font-family: FontAwesome;
+      color: darken(#fff, 55%);
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-58%);
+      z-index: 2;
+    }
+  }
+  #verify-password {
+    &::before {
+      content: '\f13e';
+      font-family: FontAwesome;
+      color: darken(#fff, 55%);
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-58%);
+      z-index: 2;
+    }
+  }
+  input[type="submit"] {
+    background: $primary-color;
+    border: none;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    color: #fff;
+    &:hover {
+      background: darken($primary-color, 5%);
+      cursor: pointer;
+    }
+  }
+  animation: 500ms slideDown;
+  @keyframes slideDown {
+  	0% {
+  		transform: translateY(-100%);
+  	}
+  	25%{
+  		transform: translateY(8%);
+  	}
+  	50%{
+  		transform: translateY(-4%);
+  	}
+  	75%{
+  		transform: translateY(4%);
+  	}
+  	100% {
+  		transform: translateY(0%);
+  	}
+  }
+}

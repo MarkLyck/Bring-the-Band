@@ -24,9 +24,15 @@ const Signup = React.createClass({
     return (
       <form onSubmit={this.signup} className="form-modal signup">
         <h3>Signup</h3>
-        <input type="text" placeholder="Username" ref="username" autoFocus="true"/>
-        <input type="password" placeholder="Password" ref="password"/>
-        <input type="password" placeholder="Verify Password" ref="verifyPassword"/>
+        <div id="username">
+          <input type="text" placeholder="Username" ref="username" autoFocus="true"/>
+        </div>
+        <div id="password">
+          <input type="password" placeholder="Password" ref="password"/>
+        </div>
+        <div id="verify-password">
+          <input type="password" placeholder="Verify Password" ref="verifyPassword"/>
+        </div>
         <input type="submit" id="submit-btn" />
       </form>
     )

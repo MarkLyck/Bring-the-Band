@@ -695,10 +695,43 @@ nav {
     padding: 0 20px; }
   .form-modal input {
     padding: 20px;
+    padding-left: 35px;
     border: none;
     border-top: 1px solid #1a1a1a;
     background: #262626;
-    color: #fff; }
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box; }
+  .form-modal div {
+    position: relative;
+    width: 100%; }
+  .form-modal #username::before {
+    content: '\f007';
+    font-family: FontAwesome;
+    color: gray;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-55%);
+    z-index: 2; }
+  .form-modal #password::before {
+    content: '\f023';
+    font-family: FontAwesome;
+    color: #737373;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-58%);
+    z-index: 2; }
+  .form-modal #verify-password::before {
+    content: '\f13e';
+    font-family: FontAwesome;
+    color: #737373;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-58%);
+    z-index: 2; }
   .form-modal input[type="submit"] {
     background: #2bba87;
     border: none;
