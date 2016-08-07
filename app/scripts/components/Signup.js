@@ -10,8 +10,15 @@ const Signup = React.createClass({
     console.log('this: ', this);
     let username = this.refs.username.value
     let password = this.refs.password.value
-    store.session.signup(username, password)
-    this.props.closeModal()
+    let verifyPassword = this.refs.verifyPassword.value
+    store.session.signup(username, password, verifyPassword)
+      .then(() => {
+        this.props.closeModal()
+      })
+      .catch(() => {
+        console.log('INVALID SIGNUP');
+      })
+
   },
   render: function() {
     return (

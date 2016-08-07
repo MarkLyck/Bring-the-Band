@@ -56,24 +56,39 @@ const Session = Backbone.Model.extend({
       }
     })
   },
-  signup: function(username, password) {
-    this.clear()
-    store.session.save({
-      username: username,
-      password: password,
-      votedFor: []
-    },
-    {
-      url: `https://baas.kinvey.com/user/${store.settings.appKey}/`,
-      success: (model, response) => {
-        model.unset('password')
-        localStorage.authtoken = response._kmd.authtoken
-        this.set('showModal', false)
-      },
-      error: function(model, response) {
-        console.log('ERROR: ', arguments);
+  signup: function(username, password, verifyPass) {
+    return new Promise((resolve, reject) => {
+      if (this.verifyPassword(password, verifyPass)) {
+        this.clear()
+        store.session.save({
+          username: username,
+          password: password,
+          votedFor: []
+        },
+        {
+          url: `https://baas.kinvey.com/user/${store.settings.appKey}/`,
+          success: (model, response) => {
+            model.unset('password')
+            localStorage.authtoken = response._kmd.authtoken
+            this.set('showModal', false)
+            resolve()
+          },
+          error: function(model, response) {
+            console.log('ERROR: ', arguments);
+          }
+        })
+      } else {
+        reject()
       }
     })
+  },
+  verifyPassword: function(pass, verifyPass) {
+    console.log(pass + '|' + verifyPass);
+    if (pass === verifyPass) {
+      return true
+    } else {
+      return false
+    }
   },
   logout: function() {
     $.ajax({
