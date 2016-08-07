@@ -1,5 +1,6 @@
 import React from 'react'
 import _ from 'underscore'
+import $ from 'jquery'
 
 
 
@@ -29,7 +30,7 @@ const TicketModal = React.createClass({
     if (parts.length) {
       this.refs.cardNumber.value = parts.join(' ')
     } else {
-      this.refs.cardNumber.value = value
+      this.refs.cardNumber.value = v
     }
   },
   dateFormat: function(e) {
@@ -60,8 +61,6 @@ const TicketModal = React.createClass({
       }
     } else {
       v = input
-      console.log(v);
-      console.log(v.length);
       if (v.length === 4) {
         console.log('DELETE EXTRA');
         let parts = v.split('')
@@ -84,7 +83,6 @@ const TicketModal = React.createClass({
   cvcFormat: function() {
     let input = this.refs.cardCvc.value
     let v = input.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
-    console.log(v);
     if (v.length > 3) {
       let parts = v.split('')
       parts.splice(2, 1)
@@ -92,9 +90,62 @@ const TicketModal = React.createClass({
     }
     this.refs.cardCvc.value = v
   },
-  render: function() {
-    console.log(this);
+  makePayment: function(e) {
+    e.preventDefault()
+    let ccNum = this.refs.cardNumber.value.replace(/\s+/g, '')
+    let ccMonth = this.refs.cardExpiry.value.split(' / ')[0]
+    let ccYear = this.refs.cardExpiry.value.split(' / ')[1]
+    let ccCVC = this.refs.cardCvc.value
 
+    console.log(ccNum);
+    console.log(ccMonth);
+    console.log(ccYear);
+    console.log(ccCVC);
+
+    Stripe.setPublishableKey('pk_test_c3GciGfzJPBBTd8238EwfTta');
+    Stripe.card.createToken({
+      number: ccNum,
+      cvc: ccCVC,
+      exp_month: ccMonth,
+      exp_year: ccYear
+    }, stripeResponseHandler);
+
+    function stripeResponseHandler(status, response) {
+      console.log('card status: ', status);
+      console.log('token: ', response.id);
+
+      // let charge = Stripe.charges.create({
+      //   amount: 1000, // amount in cents, again
+      //   currency: "usd",
+      //   source: response.id,
+      //   description: "Example charge"
+      // }, function(err, charge) {
+      //   if (err && err.type === 'StripeCardError') {
+      //     // The card has been declined
+      //   }
+      // });
+      $.ajax({
+        type: 'POST',
+        url: 'https://api.stripe.com/v1/charges',
+        headers: {
+          Authorization: 'Bearer sk_test_9JK5hwYFl8C0xMDpueYHNGzy'
+        },
+        data: {
+          amount: 3000,
+          currency: 'usd',
+          source: response.id,
+          description: "Charge for madison.garcia@example.com"
+        },
+        success: (response) => {
+          console.log('successful payment: ', response);
+        },
+        error: (response) => {
+          console.log('error payment: ', response);
+        }
+      })
+    }
+  },
+  render: function() {
     return (
       <div className="get-tickets-container">
         <div className="left">
@@ -108,7 +159,7 @@ const TicketModal = React.createClass({
 
         <div className="right">
 
-          <form>
+          <form onSubmit={this.makePayment}>
             <div className="email input-container">
               <i className="fa fa-envelope-o" aria-hidden="true"></i>
               <input type="email" placeholder="Email" ref="email"/>
@@ -131,9 +182,6 @@ const TicketModal = React.createClass({
 
             <input className="pay-button" type="submit" value={`Pay $${(this.state.quantity * 30).toFixed(2)}`}/>
           </form>
-
-
-
         </div>
       </div>
     )
@@ -141,8 +189,3 @@ const TicketModal = React.createClass({
 })
 
 export default TicketModal
-
-// number: $('.card-number').val(),
-// cvc: $('.card-cvc').val(),
-// exp_month: $('.card-expiry-month').val(),
-// exp_year: $('.card-expiry-year').val()
