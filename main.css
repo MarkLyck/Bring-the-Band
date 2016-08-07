@@ -712,9 +712,9 @@ nav {
     .form-modal .form-error i {
       margin-right: 5px; }
 @keyframes showError {
-  0% {
+  from {
     height: 0; }
-  100% {
+  to {
     height: 60px; } }
   .form-modal .username::before {
     content: '\f007';
