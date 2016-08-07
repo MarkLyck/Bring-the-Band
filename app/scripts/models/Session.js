@@ -95,7 +95,6 @@ const Session = Backbone.Model.extend({
       votedFor: []
     })
     this.trigger('change')
-    store.voteBands.data.trigger('update')
   },
   retrieve: function() {
     this.fetch({
