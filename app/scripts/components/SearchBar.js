@@ -15,7 +15,7 @@ const SearchBar = React.createClass({
   render: function() {
     return (
       <form id="search-form" onSubmit={this.searchFor}>
-        <input id="search-bar" type="text" placeholder="Search..." ref="searchBar"/>
+        <input id="search-bar" type="text" placeholder="Search for bands..." ref="searchBar"/>
         <input id="search-btn" type="submit" value="&#xf002;"/>
       </form>
     )

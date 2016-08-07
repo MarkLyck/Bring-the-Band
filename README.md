@@ -12,8 +12,6 @@
 - add fetching status
 
 ### TODO
-- Fix clicking submit on signup doesn't close the modal and log you in?
-- Double check that login is always functional
 - Improve login / signup forms to include icons for username, password, verify password
 - Improve login / signup with handling invalid logins / usernames / passwords
 - Finish GetTickets modal.
@@ -21,3 +19,5 @@
 - Add fetching status animations
 - Fix bug where going to Top Albums from search, causes it to show no bands for a second.
 - Unit testing
+- Fix warning `warning.js:44 Warning: performUpdateIfNecessary: Unexpected batch number (current 233, pending 120)` when logging out and back in.
+- Loging out doesn't update the bandItem classes.
