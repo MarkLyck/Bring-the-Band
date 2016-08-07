@@ -10,13 +10,18 @@ let store = {
     next: '',
     prev: '',
     offset: 0,
-    total: 0
+    total: 0,
+    fetching: false
   },
   voteBands: {
     data: new VoteBands(),
-    foundVotes: 0
+    foundVotes: 0,
+    fetching: false
   },
-  albums: new Albums(),
+  albums: {
+    data: new Albums(),
+    fetching: false
+  },
   anom: {
     username: 'anom',
     authtoken: '4842425e-82fe-462f-bbab-a10f6ab71b48.98//DN44NfQ3amPLirtMvDlD4jEXuM8FWA86HWdgOJg='

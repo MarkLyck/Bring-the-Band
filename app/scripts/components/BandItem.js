@@ -70,9 +70,8 @@ const BandItem = React.createClass({
   },
   showBand: function() {
     if (this.state.band.bandId) {
-      store.albums.getAlbumsFor(this.state.band.bandId)
+      store.albums.data.getAlbumsFor(this.state.band.bandId)
       .then((albumURI) => {
-        console.log('PROMISE WORKED: ', albumURI);
         this.setState({showBand: true, albumURI: albumURI})
       })
       .catch(() => {
@@ -80,7 +79,6 @@ const BandItem = React.createClass({
       })
     } else {
       store.albums.getAlbumsFor(this.state.band.id).then((albumURI) => {
-        console.log('PROMISE WORKED: ', albumURI);
         this.setState({showBand: true, albumURI: albumURI})
       })
       .catch(() => {
@@ -103,7 +101,6 @@ const BandItem = React.createClass({
 
     let itemClasses;
     let clickHandler;
-    console.log('store: ', store.session.toJSON());
     if (store.session.get('votedFor').indexOf(this.state.band._id) === -1) {
       itemClasses = "band-item"
       clickHandler = this.voteForBand
