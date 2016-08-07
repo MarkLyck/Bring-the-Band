@@ -44,21 +44,33 @@ const Session = Backbone.Model.extend({
     this.updateUser()
   },
   login: function(username, password) {
-    this.save({username: username, password: password},
-    {
-      success: (model, response) => {
-        localStorage.authtoken = response._kmd.authtoken
-        this.unset('password')
-        this.set('showModal', false)
-      },
-      error: function(model, response) {
-        console.log('ERROR: Login failed');
-      }
+    return new Promise((resolve, reject) => {
+      this.save({username: username, password: password},
+      {
+        success: (model, response) => {
+          localStorage.authtoken = response._kmd.authtoken
+          this.unset('password')
+          this.set('showModal', false)
+          resolve()
+        },
+        error: function(model, response) {
+          console.log('ERROR: Login failed: ', response.responseText);
+          if (response.responseText.indexOf('IncompleteRequestBody') !== -1) {
+            if (username === '') {
+              reject('Username missing')
+            } else {
+              reject('Password missing')
+            }
+          } else if (response.responseText.indexOf('InvalidCredentials') !== -1) {
+            reject('Wrong username or password')
+          }
+        }
+      })
     })
   },
   signup: function(username, password, verifyPass) {
     return new Promise((resolve, reject) => {
-      if (this.verifyPassword(password, verifyPass)) {
+      if (this.verifyPassword(password, verifyPass) && username.length > 3 && password.length > 3) {
         this.clear()
         store.session.save({
           username: username,
@@ -73,17 +85,22 @@ const Session = Backbone.Model.extend({
             this.set('showModal', false)
             resolve()
           },
-          error: function(model, response) {
-            console.log('ERROR: ', arguments);
+          error: (model, response) => {
+            reject('Username taken')
           }
         })
+      } else if (!this.verifyPassword(password, verifyPass)){
+        reject('Password doesn\'t match')
+      } else if (username.length < 4) {
+        reject('Username must be 4 characters')
+      } else if (password.length < 4) {
+        reject('Password must be 4 characters')
       } else {
-        reject()
+        reject('Signup failed')
       }
     })
   },
   verifyPassword: function(pass, verifyPass) {
-    console.log(pass + '|' + verifyPass);
     if (pass === verifyPass) {
       return true
     } else {
