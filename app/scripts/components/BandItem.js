@@ -29,7 +29,6 @@ const BandItem = React.createClass({
         votes: store.voteBands.data.get(realId).toJSON().votes
       })
     } else if (this.state.band.bandId) {
-      console.log('THIS RUNS INSTEAD');
       this.setState({
         band: store.voteBands.data.get(this.state.band._id).toJSON(),
         votes: store.voteBands.data.get(this.state.band._id).toJSON().votes
@@ -133,8 +132,8 @@ const BandItem = React.createClass({
     )
   },
   componentWillUnmount: function() {
-    if (store.voteBands.data.get(this.props.band._id)) {
-      let band = store.voteBands.data.get(this.props.band._id)
+    let band = store.voteBands.data.get(this.props.band._id)
+    if (band) {
       band.off('change', this.updateVotes)
     }
     store.voteBands.data.off('update', this.updateVotes)

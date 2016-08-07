@@ -49,7 +49,6 @@ const Band = Backbone.Model.extend({
           type: 'DELETE',
           url: `https://baas.kinvey.com/appdata/${store.settings.appKey}/votes/${vote._id}`,
           success: (r) => {
-            console.log('success: ', r);
             this.set('votes', (this.get('votes') -1))
             store.session.removeVoteFor(vote.bandId)
           },
