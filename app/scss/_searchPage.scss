@@ -88,6 +88,10 @@
     padding: 0 10px;
     .band-name {
       max-width: 80%;
+      max-height: 80%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .votes {
       max-width: 20%;

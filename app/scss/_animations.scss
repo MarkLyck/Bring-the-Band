@@ -1,0 +1,35 @@
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  25%{
+    transform: translateY(8%);
+  }
+  50%{
+    transform: translateY(-4%);
+  }
+  75%{
+    transform: translateY(4%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(-5%);
+  }
+  25%{
+    transform: translateX(5%);
+  }
+  50%{
+    transform: translateX(-5%);
+  }
+  75%{
+    transform: translateX(5%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
