@@ -108,22 +108,10 @@ const TicketModal = React.createClass({
       cvc: ccCVC,
       exp_month: ccMonth,
       exp_year: ccYear
-    }, stripeResponseHandler);
-
-    function stripeResponseHandler(status, response) {
+    }, (status, response) => {
       console.log('card status: ', status);
       console.log('token: ', response.id);
 
-      // let charge = Stripe.charges.create({
-      //   amount: 1000, // amount in cents, again
-      //   currency: "usd",
-      //   source: response.id,
-      //   description: "Example charge"
-      // }, function(err, charge) {
-      //   if (err && err.type === 'StripeCardError') {
-      //     // The card has been declined
-      //   }
-      // });
       $.ajax({
         type: 'POST',
         url: 'https://api.stripe.com/v1/charges',
@@ -131,7 +119,7 @@ const TicketModal = React.createClass({
           Authorization: 'Bearer sk_test_9JK5hwYFl8C0xMDpueYHNGzy'
         },
         data: {
-          amount: 3000,
+          amount: (this.state.quantity * 30 * 100),
           currency: 'usd',
           source: response.id,
           description: "Charge for madison.garcia@example.com"
@@ -143,7 +131,7 @@ const TicketModal = React.createClass({
           console.log('error payment: ', response);
         }
       })
-    }
+    });
   },
   render: function() {
     return (
