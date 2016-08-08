@@ -19,8 +19,6 @@ const BandItem = React.createClass({
     store.session.on('change', this.updateVotes)
   },
   updateVotes: function() {
-    console.log('updating vote');
-
     if (store.voteBands.data.getRealID(this.state.band.id)) {
       let realId = store.voteBands.data.getRealID(this.state.band.id)
       this.setState({

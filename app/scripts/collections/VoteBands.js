@@ -17,7 +17,6 @@ const VoteBands = Backbone.Collection.extend({
   },
   createBand: function(band, session) {
     // return new Promise((resolve, reject) => {
-      console.log('creating band');
       this.create({
         name: band.name,
         imgURL: band.imgURL,
@@ -54,7 +53,6 @@ const VoteBands = Backbone.Collection.extend({
 
   },
   getModelVotes: function(store) {
-    console.log('Getting model votes');
     store.voteBands.foundVotes = 0
     this.forEach((band) => {
       band.getVotes()

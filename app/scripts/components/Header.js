@@ -44,7 +44,6 @@ const Header = React.createClass({
     }
   },
   getTickets: function() {
-    console.log('GET TICKETS');
     store.session.set('showModal', 'tickets')
   },
   render: function() {
@@ -93,11 +92,11 @@ const Header = React.createClass({
       modal = <Modal closeModal={this.closeModal} modalStyles={modalStyles}><TicketModal closeModal={this.closeModal}/></Modal>
     } else if (this.state.showModal === 'success-payment') {
       modalStyles = {
-        maxWidth: "600px",
+        maxWidth: "400px",
       }
       if (this.state.slideOut) {
         modalStyles = {
-          maxWidth: "600px",
+          maxWidth: "400px",
           animation: '300ms slideOut'
         }
       }

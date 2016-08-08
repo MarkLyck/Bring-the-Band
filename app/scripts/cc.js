@@ -72,7 +72,6 @@ let cc = {
     return v
   },
   checkPayment: function(card) {
-    console.log('checking payment');
     return new Promise((resolve, reject) => {
       if (!card.email) {
         reject('Missing email')
@@ -97,7 +96,6 @@ let cc = {
     })
   },
   chargeCard: function(token, quantity) {
-    console.log('charging card');
     return new Promise((resolve, reject) => {
       $.ajax({
         type: 'POST',
@@ -109,11 +107,9 @@ let cc = {
           description: `Charge for ${store.session.get('email')}`
         },
         success: (response) => {
-          console.log('successful payment: ', response);
           resolve()
         },
         error: (response) => {
-          console.log('error payment: ', response);
           reject(response)
         }
       })

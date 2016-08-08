@@ -12,6 +12,4 @@
 - add fetching status
 
 ### TODO
-- Create success modal for payment
-- Complete Backend node.js secure Stripe charge request
 - Unit testing

@@ -3,6 +3,7 @@ import _ from 'underscore'
 import $ from 'jquery'
 
 import cc from '../cc'
+import store from '../store'
 
 const TicketModal = React.createClass({
   getInitialState() {
@@ -52,6 +53,8 @@ const TicketModal = React.createClass({
     cc.chargeCard(token, this.state.quantity)
       .then(() => {
         console.log('SUCCESFUL PAYMENT');
+        console.log(store.session);
+        store.session.set('showModal', 'success-payment')
       })
       .catch((e) => {
         console.log('charge ERROR: ', e);

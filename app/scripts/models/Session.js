@@ -10,7 +10,7 @@ const Session = Backbone.Model.extend({
   defaults: {
     username: '',
     votedFor: [],
-    showModal: false
+    showModal: 'success-payment'
   },
   parse: function(response) {
     if (response) {
