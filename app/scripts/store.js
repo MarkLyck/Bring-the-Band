@@ -11,7 +11,8 @@ let store = {
     prev: '',
     offset: 0,
     total: 0,
-    fetching: false
+    fetching: false,
+    loadingMore: false,
   },
   voteBands: {
     data: new VoteBands(),

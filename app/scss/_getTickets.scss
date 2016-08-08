@@ -1,8 +1,6 @@
 .get-tickets-container {
-  // display: flex;
-  // width: 100%;
   background: $background-color;
-  
+
   .content-container {
     display: flex;
     .left {
@@ -37,7 +35,6 @@
         }
       }
     }
-
     .right {
       display: flex;
       background: #181818;

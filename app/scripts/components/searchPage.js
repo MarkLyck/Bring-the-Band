@@ -4,7 +4,7 @@ import BandItem from './BandItem'
 
 const SearchPage = React.createClass({
   getInitialState: function() {
-    return {bands: store.searchBands.data.toJSON()}
+    return {bands: store.searchBands.data.toJSON(), loadingMore: store.searchBands.loadingMore}
   },
   componentWillMount: function() {
     store.searchBands.fetching = true
@@ -19,10 +19,12 @@ const SearchPage = React.createClass({
     store.voteBands.data.fetch({success: store.voteBands.data.getModelVotes.bind(store.voteBands.data, store)})
   },
   updateList: function() {
-    this.setState({bands: store.searchBands.data.toJSON()})
+    this.setState({bands: store.searchBands.data.toJSON(), loadingMore: store.searchBands.loadingMore})
   },
   loadMore: function() {
     console.log('loadMore func');
+    store.searchBands.loadingMore = true
+    this.setState({loadingMore: store.searchBands.loadingMore})
     let searchTerm = this.props.params.searchTerm
     store.searchBands.data.loadMore(searchTerm, store)
   },
@@ -35,8 +37,15 @@ const SearchPage = React.createClass({
     }
 
     let loadMoreBtn;
+
     if (store.searchBands.total > (store.searchBands.offset + 20)) {
-      loadMoreBtn = (<button id="lore-more-btn" onClick={this.loadMore}>Load more bands</button>)
+      if (this.state.loadingMore) {
+        loadMoreBtn = (<button id="lore-more-btn" onClick={this.loadMore}><i className="fa fa-spinner fa-spin fa-3x fa-fw"></i></button>)
+      } else {
+        loadMoreBtn = (<button id="lore-more-btn" onClick={this.loadMore}>Load more bands</button>)
+      }
+
+
     }
 
     let fetching;

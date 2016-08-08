@@ -50,7 +50,7 @@ const SearchBands = Backbone.Collection.extend({
           limit: 20
         },
         success: (response) => {
-          console.log(response);
+          store.searchBands.loadingMore = false
           response.artists.items.forEach(artist => {
             let imgURL = 'assets/images/album-cover.jpg'
             if (artist.images[0]) {

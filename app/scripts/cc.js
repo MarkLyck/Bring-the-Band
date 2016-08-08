@@ -86,8 +86,6 @@ let cc = {
         exp_month: card.month,
         exp_year: card.year
       }, (status, response) => {
-        // console.log(status);
-        // console.log(response);
         if (status === 200) {
           resolve(response.id)
         } else if (response.error.message.indexOf('required param: exp_year') !== -1) {

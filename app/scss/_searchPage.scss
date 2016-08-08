@@ -96,12 +96,16 @@
 
 #lore-more-btn {
   width: 60%;
-  padding: 20px;
+  height: 60px;
   border-radius: 15px;
   box-sizing: border-box;
   display: flex;
   margin: 30px auto;
   justify-content: center;
+  align-items: center;
+  i {
+    font-size: 1.75rem;
+  }
 }
 
 @media (max-width: 1200px) {
