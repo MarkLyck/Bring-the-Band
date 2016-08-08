@@ -832,7 +832,7 @@ nav {
         .get-tickets-container .right form .input-container input {
           padding: 20px 0 20px 35px;
           border-radius: 5px;
-          border: 1px solid #1a1a1a;
+          border: 1px solid #0d0d0d;
           background: #262626;
           color: #fff;
           width: 100%;
@@ -840,11 +840,16 @@ nav {
       .get-tickets-container .right form .email {
         margin: 40px 0; }
       .get-tickets-container .right form .wrapper {
+        margin-top: 5px;
         width: 80%;
         display: flex;
         margin-bottom: 40px; }
         .get-tickets-container .right form .wrapper .input-container {
-          width: 50%; }
+          max-width: 50%; }
+        .get-tickets-container .right form .wrapper .card-expiry-month {
+          margin-right: 2.5px; }
+        .get-tickets-container .right form .wrapper .card-cvc {
+          margin-left: 2.5px; }
       .get-tickets-container .right form .pay-button {
         background: #2bba87;
         border: none;
