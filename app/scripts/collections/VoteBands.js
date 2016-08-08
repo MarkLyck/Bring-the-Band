@@ -53,8 +53,9 @@ const VoteBands = Backbone.Collection.extend({
     // })
 
   },
-  getModelVotes: function() {
+  getModelVotes: function(store) {
     console.log('Getting model votes');
+    store.voteBands.foundVotes = 0
     this.forEach((band) => {
       band.getVotes()
     })

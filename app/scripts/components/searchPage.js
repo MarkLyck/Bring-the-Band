@@ -16,7 +16,7 @@ const SearchPage = React.createClass({
     store.searchBands.data.searchFor(searchTerm, store)
 
     store.voteBands.foundVotes = 0
-    store.voteBands.data.fetch({success: store.voteBands.data.getModelVotes.bind(store.voteBands.data)})
+    store.voteBands.data.fetch({success: store.voteBands.data.getModelVotes.bind(store.voteBands.data, store)})
   },
   updateList: function() {
     this.setState({bands: store.searchBands.data.toJSON()})

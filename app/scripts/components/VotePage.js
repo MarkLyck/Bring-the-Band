@@ -15,7 +15,7 @@ const VotePage = React.createClass({
       this.setState({fetching: store.voteBands.fetching})
       store.voteBands.data.fetch({
         success: () => {
-          store.voteBands.data.getModelVotes()
+          store.voteBands.data.getModelVotes(store)
         }
       })
     } else {
@@ -39,6 +39,11 @@ const VotePage = React.createClass({
     if (this.state.bands[0]) {
       if (store.voteBands.foundVotes !== store.voteBands.data.models.length) {
         console.log(this.state);
+        console.log(store.voteBands.foundVotes);
+        console.log(store.voteBands.data.models.length);
+        if (!store.voteBands.fetching) {
+              store.voteBands.data.getModelVotes(store)
+        }
         return (
           <div className="bands-page-container">
             {fetching}
