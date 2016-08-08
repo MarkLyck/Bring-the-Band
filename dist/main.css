@@ -809,9 +809,11 @@ nav {
       padding: 0 10px;
       height: 40px;
       border-radius: 5px;
-      border: 1px solid #1a1a1a;
-      background: #262626;
+      border: 1px solid #0D0D0D;
+      background: #181818;
       color: #fff; }
+      .get-tickets-container .left .wrapper input:focus {
+        border: 1px solid #2bba87; }
   .get-tickets-container .right {
     display: flex;
     background: #181818;
@@ -837,6 +839,8 @@ nav {
           color: #fff;
           width: 100%;
           box-sizing: border-box; }
+          .get-tickets-container .right form .input-container input:focus {
+            border: 1px solid #2bba87; }
       .get-tickets-container .right form .email {
         margin: 40px 0; }
       .get-tickets-container .right form .wrapper {

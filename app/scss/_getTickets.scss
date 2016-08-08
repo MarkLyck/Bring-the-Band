@@ -23,10 +23,13 @@
         padding: 0 10px;
         height: 40px;
         border-radius: 5px;
-        border: 1px solid darken($header-color, 10%);
-        background: darken($header-color, 5%);
+        border: 1px solid #0D0D0D;
+        background: #181818;
         color: #fff;
         // box-sizing: border-box;
+        &:focus {
+          border: 1px solid $primary-color;
+        }
       }
     }
   }
@@ -52,13 +55,15 @@
         }
         input {
           padding: 20px 0 20px 35px;
-          // height: 40px;
           border-radius: 5px;
           border: 1px solid darken($header-color, 15%);
           background: darken($header-color, 5%);
           color: #fff;
           width: 100%;
           box-sizing: border-box;
+          &:focus {
+            border: 1px solid $primary-color;
+          }
         }
       }
       .email {
