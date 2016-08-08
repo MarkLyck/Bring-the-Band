@@ -919,6 +919,21 @@ nav {
     .payment-error h4 i {
       margin-right: 10px; }
 
+.success-modal {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 40px; }
+  .success-modal i {
+    color: #2bba87;
+    font-size: 5rem; }
+  .success-modal h2 {
+    color: #2bba87; }
+  .success-modal .user-email {
+    margin: 0; }
+
 body {
   background-color: #222; }
 
