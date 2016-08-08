@@ -101,10 +101,7 @@ let cc = {
     return new Promise((resolve, reject) => {
       $.ajax({
         type: 'POST',
-        url: 'https://api.stripe.com/v1/charges',
-        headers: {
-          Authorization: 'Bearer sk_test_9JK5hwYFl8C0xMDpueYHNGzy'
-        },
+        url: `https://baas.kinvey.com/rpc/${store.settings.appKey}/custom/charge`,
         data: {
           amount: (quantity * 30 * 100),
           currency: 'usd',

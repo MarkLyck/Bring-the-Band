@@ -12,6 +12,6 @@
 - add fetching status
 
 ### TODO
-- Finish GetTickets modal.
-- Add fetching status animations
+- Create success modal for payment
+- Complete Backend node.js secure Stripe charge request
 - Unit testing

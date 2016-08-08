@@ -11,6 +11,7 @@ import Login from './Login'
 
 import Modal from './Modal'
 import TicketModal from './TicketModal'
+import SuccessModal from './SuccessModal'
 
 const Header = React.createClass({
   getInitialState: function() {
@@ -90,6 +91,17 @@ const Header = React.createClass({
         }
       }
       modal = <Modal closeModal={this.closeModal} modalStyles={modalStyles}><TicketModal closeModal={this.closeModal}/></Modal>
+    } else if (this.state.showModal === 'success-payment') {
+      modalStyles = {
+        maxWidth: "600px",
+      }
+      if (this.state.slideOut) {
+        modalStyles = {
+          maxWidth: "600px",
+          animation: '300ms slideOut'
+        }
+      }
+      modal = <Modal closeModal={this.closeModal} modalStyles={modalStyles}><SuccessModal closeModal={this.closeModal}/></Modal>
     }
 
     let buttons = (
