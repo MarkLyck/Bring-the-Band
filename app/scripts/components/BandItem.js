@@ -78,7 +78,7 @@ const BandItem = React.createClass({
         console.log('FAILED TO GET ALBUM');
       })
     } else {
-      store.albums.getAlbumsFor(this.state.band.id).then((albumURI) => {
+      store.albums.data.getAlbumsFor(this.state.band.id).then((albumURI) => {
         this.setState({showBand: true, albumURI: albumURI})
       })
       .catch(() => {
