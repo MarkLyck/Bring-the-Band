@@ -13,7 +13,6 @@ const BandItem = React.createClass({
     if (this.state.band.id) {
 
     } else if (store.voteBands.data.get(this.state.band._id)) {
-      console.log('listening for band');
       let band = store.voteBands.data.get(this.state.band._id)
       band.on('change', this.updateVotes)
     }
@@ -72,6 +71,7 @@ const BandItem = React.createClass({
     if (this.state.band.bandId) {
       store.albums.data.getAlbumsFor(this.state.band.bandId)
       .then((albumURI) => {
+        store.albums.fetching = true
         this.setState({showBand: true, albumURI: albumURI})
       })
       .catch(() => {
