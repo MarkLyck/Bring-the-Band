@@ -740,7 +740,8 @@ nav {
       margin: 0 20px; }
   .album-modal .right {
     width: calc(100% - 275px);
-    background: #181818; }
+    background: #181818;
+    position: relative; }
 
 .form-modal-container {
   position: fixed;
