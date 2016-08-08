@@ -443,6 +443,34 @@ textarea {
     transform: translateX(5%); }
   100% {
     transform: translateX(0%); } }
+.loading {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 75px;
+  background: url("assets/images/logo.svg");
+  width: 100px;
+  height: 100px;
+  border-radius: 100%; }
+
+.loading:after {
+  content: '';
+  background: trasparent;
+  width: 140%;
+  height: 140%;
+  position: absolute;
+  border-radius: 100%;
+  top: -20%;
+  left: -20%;
+  opacity: 0.7;
+  box-shadow: rgba(255, 255, 255, 0.6) -4px -5px 3px -3px;
+  animation: rotate 2s infinite linear; }
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg); }
+  100% {
+    transform: rotateZ(360deg); } }
 nav {
   position: fixed;
   top: 0;
@@ -564,6 +592,9 @@ nav {
   #hero {
     background-size: cover;
     background-position: center right; } }
+.bands-page-container {
+  position: relative; }
+
 .band-list {
   margin-top: 25px;
   display: flex;
