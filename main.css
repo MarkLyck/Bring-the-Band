@@ -669,12 +669,15 @@ nav {
 
 #lore-more-btn {
   width: 60%;
-  padding: 20px;
+  height: 60px;
   border-radius: 15px;
   box-sizing: border-box;
   display: flex;
   margin: 30px auto;
-  justify-content: center; }
+  justify-content: center;
+  align-items: center; }
+  #lore-more-btn i {
+    font-size: 1.75rem; }
 
 @media (max-width: 1200px) {
   .band-item {
