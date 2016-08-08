@@ -139,7 +139,7 @@ const Session = Backbone.Model.extend({
       success: (r) => {
       },
       error: (e) => {
-        console.error('Putting user: ', e)
+        console.error('Error Putting user')
       }
     })
   }

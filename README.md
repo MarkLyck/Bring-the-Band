@@ -8,8 +8,6 @@
 
 ## Extra User Features
 - implement pledges
-- implement Stripe
-- add fetching status
 
 ### TODO
 - Unit testing

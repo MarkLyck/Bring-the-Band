@@ -45,7 +45,7 @@ const VoteBands = Backbone.Collection.extend({
           })
         },
         error: function(e) {
-          console.error('Creating band failed', e)
+          console.error('Creating band failed')
           // reject()
         }
       }, {wait: true})

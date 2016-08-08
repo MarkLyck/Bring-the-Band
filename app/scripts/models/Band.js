@@ -14,24 +14,28 @@ const Band = Backbone.Model.extend({
     uri: ''
   },
   voteForBand: function() {
-    store.session.addVoteFor(this.get('_id'))
+    return new Promise((resolve, reject) => {
+      store.session.addVoteFor(this.get('_id'))
 
-    let votes = this.get('votes')
-    votes++
-    this.set('votes', votes)
+      let votes = this.get('votes')
+      votes++
+      this.set('votes', votes)
 
-    let vote = new Vote()
+      let vote = new Vote()
 
-    vote.save({
-      bandId: this.get('_id'),
-      userName: store.session.get('username')
-    }, {
-      success: (voteResponse) => {
-        this.trigger('update')
-      },
-      error: function() {
-        throw new Error('CREATING VOTE FAILED')
-      }
+      vote.save({
+        bandId: this.get('_id'),
+        userName: store.session.get('username')
+      }, {
+        success: (voteResponse) => {
+          resolve(this.get('votes'))
+          this.trigger('update')
+        },
+        error: function() {
+          reject()
+          throw new Error('CREATING VOTE FAILED')
+        }
+      })
     })
 
   },
@@ -62,7 +66,6 @@ const Band = Backbone.Model.extend({
     .then((response) => {
       this.set('votes', response.length)
       store.voteBands.foundVotes++
-
       if (store.voteBands.foundVotes === store.voteBands.data.models.length) {
         store.voteBands.fetching = false
         store.voteBands.data.trigger('update')
