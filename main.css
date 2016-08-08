@@ -828,84 +828,93 @@ nav {
       cursor: pointer; }
 
 .get-tickets-container {
-  display: flex;
-  width: 100%; }
-  .get-tickets-container .left .tickets-icon {
-    width: 250px;
-    height: 250px;
-    background-image: url("assets/images/tickets.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    transform: scale(1.5); }
-  .get-tickets-container .left .buy-tickets {
-    padding-left: 40px; }
-  .get-tickets-container .left .wrapper {
-    padding: 0 40px;
-    display: flex;
-    align-items: center; }
-    .get-tickets-container .left .wrapper input {
-      width: 20px;
-      margin-left: 10px;
-      padding: 0 10px;
-      height: 40px;
-      border-radius: 5px;
-      border: 1px solid #0D0D0D;
-      background: #181818;
-      color: #fff; }
-      .get-tickets-container .left .wrapper input:focus {
-        border: 1px solid #2bba87; }
-  .get-tickets-container .right {
-    display: flex;
-    background: #181818;
-    width: 100%; }
-    .get-tickets-container .right form {
-      width: 100%;
+  background: #222; }
+  .get-tickets-container .content-container {
+    display: flex; }
+    .get-tickets-container .content-container .left .tickets-icon {
+      width: 250px;
+      height: 250px;
+      background-image: url("assets/images/tickets.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      transform: scale(1.5); }
+    .get-tickets-container .content-container .left .buy-tickets {
+      padding-left: 40px; }
+    .get-tickets-container .content-container .left .wrapper {
+      padding: 0 40px;
       display: flex;
-      flex-direction: column;
       align-items: center; }
-      .get-tickets-container .right form .input-container {
-        width: 80%;
-        position: relative; }
-        .get-tickets-container .right form .input-container i {
-          position: absolute;
-          left: 10px;
-          top: 50%;
-          transform: translateY(-50%); }
-        .get-tickets-container .right form .input-container input {
-          padding: 20px 0 20px 35px;
-          border-radius: 5px;
-          border: 1px solid #0d0d0d;
-          background: #262626;
-          color: #fff;
-          width: 100%;
-          box-sizing: border-box; }
-          .get-tickets-container .right form .input-container input:focus {
-            border: 1px solid #2bba87; }
-      .get-tickets-container .right form .email {
-        margin: 40px 0; }
-      .get-tickets-container .right form .wrapper {
-        margin-top: 5px;
-        width: 80%;
-        display: flex;
-        margin-bottom: 40px; }
-        .get-tickets-container .right form .wrapper .input-container {
-          max-width: 50%; }
-        .get-tickets-container .right form .wrapper .card-expiry-month {
-          margin-right: 2.5px; }
-        .get-tickets-container .right form .wrapper .card-cvc {
-          margin-left: 2.5px; }
-      .get-tickets-container .right form .pay-button {
-        background: #2bba87;
-        border: none;
+      .get-tickets-container .content-container .left .wrapper input {
+        width: 20px;
+        margin-left: 10px;
+        padding: 0 10px;
+        height: 40px;
         border-radius: 5px;
-        padding: 20px;
-        color: #fff;
-        width: 80%;
-        box-sizing: border-box;
-        margin-bottom: 40px; }
-        .get-tickets-container .right form .pay-button:hover {
-          cursor: pointer;
-          background: #219169; }
+        border: 1px solid #0D0D0D;
+        background: #181818;
+        color: #fff; }
+        .get-tickets-container .content-container .left .wrapper input:focus {
+          border: 1px solid #2bba87; }
+    .get-tickets-container .content-container .right {
+      display: flex;
+      background: #181818;
+      width: 100%; }
+      .get-tickets-container .content-container .right form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center; }
+        .get-tickets-container .content-container .right form .input-container {
+          width: 80%;
+          position: relative; }
+          .get-tickets-container .content-container .right form .input-container i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%); }
+          .get-tickets-container .content-container .right form .input-container input {
+            padding: 20px 0 20px 35px;
+            border-radius: 5px;
+            border: 1px solid #0d0d0d;
+            background: #262626;
+            color: #fff;
+            width: 100%;
+            box-sizing: border-box; }
+            .get-tickets-container .content-container .right form .input-container input:focus {
+              border: 1px solid #2bba87; }
+        .get-tickets-container .content-container .right form .email {
+          margin: 40px 0; }
+        .get-tickets-container .content-container .right form .wrapper {
+          margin-top: 5px;
+          width: 80%;
+          display: flex;
+          margin-bottom: 40px; }
+          .get-tickets-container .content-container .right form .wrapper .input-container {
+            max-width: 50%; }
+          .get-tickets-container .content-container .right form .wrapper .card-expiry-month {
+            margin-right: 2.5px; }
+          .get-tickets-container .content-container .right form .wrapper .card-cvc {
+            margin-left: 2.5px; }
+        .get-tickets-container .content-container .right form .pay-button {
+          background: #2bba87;
+          border: none;
+          border-radius: 5px;
+          padding: 20px;
+          color: #fff;
+          width: 80%;
+          box-sizing: border-box;
+          margin-bottom: 40px; }
+          .get-tickets-container .content-container .right form .pay-button:hover {
+            cursor: pointer;
+            background: #219169; }
+
+.payment-error {
+  background: #da1354;
+  padding: 20px; }
+  .payment-error h4 {
+    margin: 0; }
+    .payment-error h4 i {
+      margin-right: 10px; }
 
 body {
   background-color: #222; }
