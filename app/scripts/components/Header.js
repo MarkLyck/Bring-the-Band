@@ -80,7 +80,8 @@ const Header = React.createClass({
       modal = <div className="form-modal-container" onClick={this.closeModal} style={containerStyles}><Login closeModal={this.closeModal} modalStyles={modalStyles}/></div>
     } else if (this.state.showModal === 'tickets') {
       modalStyles = {
-        maxWidth: "600px"
+        maxWidth: "600px",
+        background: 'none'
       }
       if (this.state.slideOut) {
         modalStyles = {

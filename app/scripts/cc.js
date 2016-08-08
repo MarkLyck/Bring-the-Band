@@ -1,6 +1,8 @@
 import $ from 'jquery'
 import _ from 'underscore'
 
+import store from './store'
+
 let cc = {
   ccFormat: function(input) {
     let v = input.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
@@ -69,41 +71,57 @@ let cc = {
     }
     return v
   },
-  makePayment: function(card, quantity) {
-    Stripe.setPublishableKey('pk_test_c3GciGfzJPBBTd8238EwfTta');
-    Stripe.card.createToken({
-      number: card.number,
-      cvc: card.cvc,
-      exp_month: card.month,
-      exp_year: card.year
-    }, (status, response) => {
-      console.log('card status: ', status);
-      console.log('token: ', response.id);
-      // If it's a valid card
-      if (status === 200) {
-        this.chargeCard(response.id)
+  checkPayment: function(card) {
+    console.log('checking payment');
+    return new Promise((resolve, reject) => {
+      if (!card.email) {
+        reject('Missing email')
+      } else {
+        store.session.set('email', card.email)
       }
-    });
+      Stripe.setPublishableKey('pk_test_c3GciGfzJPBBTd8238EwfTta');
+      Stripe.card.createToken({
+        number: card.number,
+        cvc: card.cvc,
+        exp_month: card.month,
+        exp_year: card.year
+      }, (status, response) => {
+        // console.log(status);
+        // console.log(response);
+        if (status === 200) {
+          resolve(response.id)
+        } else if (response.error.message.indexOf('required param: exp_year') !== -1) {
+          reject('Missing expiry year')
+        } else {
+          reject(response.error.message)
+        }
+      });
+    })
   },
-  chargeCard: function(token) {
-    $.ajax({
-      type: 'POST',
-      url: 'https://api.stripe.com/v1/charges',
-      headers: {
-        Authorization: 'Bearer sk_test_9JK5hwYFl8C0xMDpueYHNGzy'
-      },
-      data: {
-        amount: (quantity * 30 * 100),
-        currency: 'usd',
-        source: response.id,
-        description: `Charge for ${store.session.get('email')}`
-      },
-      success: (response) => {
-        console.log('successful payment: ', response);
-      },
-      error: (response) => {
-        console.log('error payment: ', response);
-      }
+  chargeCard: function(token, quantity) {
+    console.log('charging card');
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        type: 'POST',
+        url: 'https://api.stripe.com/v1/charges',
+        headers: {
+          Authorization: 'Bearer sk_test_9JK5hwYFl8C0xMDpueYHNGzy'
+        },
+        data: {
+          amount: (quantity * 30 * 100),
+          currency: 'usd',
+          source: token,
+          description: `Charge for ${store.session.get('email')}`
+        },
+        success: (response) => {
+          console.log('successful payment: ', response);
+          resolve()
+        },
+        error: (response) => {
+          console.log('error payment: ', response);
+          reject(response)
+        }
+      })
     })
   }
 }
