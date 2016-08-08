@@ -33,8 +33,12 @@ const Header = React.createClass({
   },
   closeModal: function(e) {
     if (e) {
-      if (_.toArray(e.target.classList).indexOf('modal-container') !== -1) {
-        store.session.set('showModal', false)
+      if (_.toArray(e.target.classList).indexOf('modal-container') !== -1 || _.toArray(e.target.classList).indexOf('form-modal-container') !== -1 ) {
+        this.setState({slideOut: true})
+        window.setTimeout(() => {
+          this.setState({slideOut: false})
+          store.session.set('showModal', false)
+        }, 300)
       }
     }
   },
@@ -60,13 +64,29 @@ const Header = React.createClass({
     }
 
     let modal;
+    let modalStyles;
+    let containerStyles;
+    if (this.state.slideOut) {
+      containerStyles = {
+        background: 'none'
+      }
+      modalStyles = {
+        animation: '300ms slideOut'
+      }
+    }
     if (this.state.showModal === 'signup') {
-      modal = <div className="form-modal-container" onClick={this.closeModal}><Signup closeModal={this.closeModal}/></div>
+      modal = <div className="form-modal-container" onClick={this.closeModal} style={containerStyles}><Signup closeModal={this.closeModal} modalStyles={modalStyles}/></div>
     } else if (this.state.showModal === 'login') {
-      modal = <div className="form-modal-container" onClick={this.closeModal}><Login closeModal={this.closeModal}/></div>
+      modal = <div className="form-modal-container" onClick={this.closeModal} style={containerStyles}><Login closeModal={this.closeModal} modalStyles={modalStyles}/></div>
     } else if (this.state.showModal === 'tickets') {
-      let modalStyles = {
+      modalStyles = {
         maxWidth: "600px"
+      }
+      if (this.state.slideOut) {
+        modalStyles = {
+          maxWidth: "600px",
+          animation: '300ms slideOut'
+        }
       }
       modal = <Modal closeModal={this.closeModal} modalStyles={modalStyles}><TicketModal closeModal={this.closeModal}/></Modal>
     }

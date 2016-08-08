@@ -60,7 +60,7 @@ const Signup = React.createClass({
         </div>)
     }
     return (
-      <form onSubmit={this.signup} className={this.state.formClasses} ref="signupModal">
+      <form onSubmit={this.signup} className={this.state.formClasses} ref="signupModal" style={this.props.modalStyles}>
         <h3>Signup</h3>
         {errorMsg}
         <div className={userClasses}>

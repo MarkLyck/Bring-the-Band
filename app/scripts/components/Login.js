@@ -47,7 +47,7 @@ const Login = React.createClass({
     }
 
     return (
-      <form onSubmit={this.login} className={this.state.formClasses}>
+      <form onSubmit={this.login} className={this.state.formClasses} style={this.props.modalStyles}>
         <h3>Login</h3>
         {errorMsg}
         <div className={userClasses}>

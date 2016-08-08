@@ -6,7 +6,7 @@ import AlbumModal from './AlbumModal'
 
 const BandItem = React.createClass({
   getInitialState: function() {
-    return {band: this.props.band, votes: this.props.band.votes, showBand: false, albumURI: ''}
+    return {band: this.props.band, votes: this.props.band.votes, showBand: false, albumURI: '', slideOut: false}
   },
   componentDidMount: function() {
     store.voteBands.data.on('update', this.updateVotes)
@@ -88,8 +88,10 @@ const BandItem = React.createClass({
     this.setState({showBand: true})
   },
   closeModal: function(e) {
-    console.log('close modal');
-    this.setState({showBand: false})
+    this.setState({slideOut: true})
+    window.setTimeout(() => {
+      this.setState({showBand: false, slideOut: false})
+    }, 300)
   },
   render: function() {
     if (!this.state.band) {
@@ -111,8 +113,18 @@ const BandItem = React.createClass({
 
     let modal;
     if (this.state.showBand) {
+      let modalStyles;
+      let containerStyles;
+      if (this.state.slideOut) {
+        containerStyles = {
+          background: 'none'
+        }
+        modalStyles = {
+          animation: '300ms slideOut'
+        }
+      }
       modal = (
-        <Modal closeModal={this.closeModal}>
+        <Modal closeModal={this.closeModal} containerStyles={containerStyles} modalStyles={modalStyles}>
           <AlbumModal band={this.state.band} votes={this.state.votes} albumURI={this.state.albumURI} urlStyle={urlStyle}/>
         </Modal>
       )

@@ -394,6 +394,15 @@ optgroup {
 textarea {
   overflow: auto; }
 
+.shake {
+  animation: 300ms shake; }
+
+.slide-in {
+  animation: 500ms slideDown; }
+
+.slide-out {
+  animation: 500ms slideOut; }
+
 @keyframes slideDown {
   0% {
     transform: translateY(-100%); }
@@ -405,6 +414,11 @@ textarea {
     transform: translateY(4%); }
   100% {
     transform: translateY(0%); } }
+@keyframes slideOut {
+  from {
+    transform: translateY(0); }
+  to {
+    transform: translateY(-200%); } }
 @keyframes animateIn {
   0% {
     opacity: 0;
@@ -780,12 +794,6 @@ nav {
     .form-modal input[type="submit"]:hover {
       background: #26a578;
       cursor: pointer; }
-
-.shake {
-  animation: 300ms shake; }
-
-.slide-in {
-  animation: 500ms slideDown; }
 
 .get-tickets-container {
   display: flex;

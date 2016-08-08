@@ -70,46 +70,41 @@ let cc = {
     return v
   },
   makePayment: function(card, quantity) {
-    let ccNum = card.number
-    let ccMonth = card.month
-    let ccYear = card.year
-    let ccCVC = card.cvc
-
-    console.log(ccNum);
-    console.log(ccMonth);
-    console.log(ccYear);
-    console.log(ccCVC);
-
     Stripe.setPublishableKey('pk_test_c3GciGfzJPBBTd8238EwfTta');
     Stripe.card.createToken({
-      number: ccNum,
-      cvc: ccCVC,
-      exp_month: ccMonth,
-      exp_year: ccYear
+      number: card.number,
+      cvc: card.cvc,
+      exp_month: card.month,
+      exp_year: card.year
     }, (status, response) => {
       console.log('card status: ', status);
       console.log('token: ', response.id);
-
-      $.ajax({
-        type: 'POST',
-        url: 'https://api.stripe.com/v1/charges',
-        headers: {
-          Authorization: 'Bearer sk_test_9JK5hwYFl8C0xMDpueYHNGzy'
-        },
-        data: {
-          amount: (quantity * 30 * 100),
-          currency: 'usd',
-          source: response.id,
-          description: "Charge for madison.garcia@example.com"
-        },
-        success: (response) => {
-          console.log('successful payment: ', response);
-        },
-        error: (response) => {
-          console.log('error payment: ', response);
-        }
-      })
+      // If it's a valid card
+      if (status === 200) {
+        this.chargeCard(response.id)
+      }
     });
+  },
+  chargeCard: function(token) {
+    $.ajax({
+      type: 'POST',
+      url: 'https://api.stripe.com/v1/charges',
+      headers: {
+        Authorization: 'Bearer sk_test_9JK5hwYFl8C0xMDpueYHNGzy'
+      },
+      data: {
+        amount: (quantity * 30 * 100),
+        currency: 'usd',
+        source: response.id,
+        description: `Charge for ${store.session.get('email')}`
+      },
+      success: (response) => {
+        console.log('successful payment: ', response);
+      },
+      error: (response) => {
+        console.log('error payment: ', response);
+      }
+    })
   }
 }
 

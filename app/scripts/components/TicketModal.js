@@ -4,8 +4,6 @@ import $ from 'jquery'
 
 import cc from '../cc'
 
-
-
 const TicketModal = React.createClass({
   getInitialState: function() {
     return {quantity: 1}
@@ -17,7 +15,7 @@ const TicketModal = React.createClass({
     if (!isNaN(this.refs.quantity.value)) {
       this.setState({quantity: this.refs.quantity.value})
     } else {
-      console.log('NAN');
+      console.log('NaN');
     }
   },
   ccFormat: function() {
