@@ -147,7 +147,7 @@ const BandItem = React.createClass({
       band.off('change', this.updateVotes)
     }
     store.voteBands.data.off('update', this.updateVotes)
-    store.session.off('update', this.updateVotes)
+    store.session.off('change', this.updateVotes)
   }
 })
 

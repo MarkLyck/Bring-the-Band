@@ -6,6 +6,9 @@ const SearchPage = React.createClass({
   getInitialState: function() {
     return {bands: store.searchBands.data.toJSON()}
   },
+  componentWillMount: function() {
+    store.searchBands.fetching = true
+  },
   componentDidMount: function() {
     store.searchBands.data.on('update', this.updateList)
 
@@ -35,8 +38,15 @@ const SearchPage = React.createClass({
     if (store.searchBands.total > (store.searchBands.offset + 20)) {
       loadMoreBtn = (<button id="lore-more-btn" onClick={this.loadMore}>Load more bands</button>)
     }
+
+    let fetching;
+    if (store.searchBands.fetching) {
+      fetching = <div className="loading"></div>
+    }
+
     return (
-      <div>
+      <div className="bands-page-container">
+        {fetching}
         <ul className="band-list">
           {bandList}
         </ul>

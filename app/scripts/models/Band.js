@@ -66,6 +66,7 @@ const Band = Backbone.Model.extend({
       store.voteBands.foundVotes++
 
       if (store.voteBands.foundVotes === store.voteBands.data.models.length) {
+        store.voteBands.fetching = false
         console.log('GOT ALL VOTES');
         store.voteBands.data.trigger('update')
       }

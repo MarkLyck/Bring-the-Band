@@ -5,41 +5,59 @@ import BandItem from './BandItem'
 
 const VotePage = React.createClass({
   getInitialState: function() {
-    return {bands: store.voteBands.data.toJSON()}
+    return {bands: store.voteBands.data.toJSON(), fetching: store.voteBands.fetching}
   },
   componentDidMount: function() {
     store.voteBands.foundVotes = 0
     store.voteBands.data.on('update', this.updateList)
     if (store.voteBands.data.models.length === 0) {
-      store.voteBands.data.fetch({success: store.voteBands.data.getModelVotes.bind(store.voteBands.data)})
+      store.voteBands.fetching = true
+      this.setState({fetching: store.voteBands.fetching})
+      store.voteBands.data.fetch({
+        success: () => {
+          store.voteBands.data.getModelVotes()
+        }
+      })
+    } else {
+      store.voteBands.fetching = false
     }
   },
   updateList: function() {
-    this.setState({bands: store.voteBands.data.toJSON()})
+    this.setState({bands: store.voteBands.data.toJSON(), fetching: store.voteBands.fetching})
   },
   componentWillUnmount: function() {
     store.voteBands.data.off('update', this.updateList)
   },
   render: function() {
-    if (!this.state.bands[0]) {
-      return null
-    }
-    if (store.voteBands.foundVotes !== store.voteBands.data.models.length) {
-      console.log(this.state);
-      return null
-    }
+    let topBands;
 
-    let sortedBands = _.sortBy(this.state.bands, band => band.votes)
-    if (sortedBands[0].votes === 0) {
-      sortedBands = sortedBands.reverse()
+    let fetching;
+    if (store.voteBands.fetching) {
+      fetching = <div className="loading"></div>
     }
 
-    let topBands = sortedBands.map((band, i) => {
-      return <BandItem band={band} key={band._id} />
-    })
+    if (this.state.bands[0]) {
+      if (store.voteBands.foundVotes !== store.voteBands.data.models.length) {
+        console.log(this.state);
+        return (
+          <div className="bands-page-container">
+            {fetching}
+          </div>
+        )
+      }
 
+      let sortedBands = _.sortBy(this.state.bands, band => band.votes)
+      if (sortedBands[0].votes === 0) {
+        sortedBands = sortedBands.reverse()
+      }
+
+      topBands = sortedBands.map((band, i) => {
+        return <BandItem band={band} key={band._id} />
+      })
+    }
     return (
-      <div>
+      <div className="bands-page-container">
+        {fetching}
         <ul className="band-list">
           {topBands}
         </ul>
