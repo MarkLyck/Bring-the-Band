@@ -14,5 +14,4 @@
 ### TODO
 - Finish GetTickets modal.
 - Add fetching status animations
-- Fix bug where going to Top Albums from search, causes it to show no bands for a second.
 - Unit testing

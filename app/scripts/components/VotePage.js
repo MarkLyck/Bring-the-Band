@@ -10,7 +10,9 @@ const VotePage = React.createClass({
   componentDidMount: function() {
     store.voteBands.foundVotes = 0
     store.voteBands.data.on('update', this.updateList)
-    store.voteBands.data.fetch({success: store.voteBands.data.getModelVotes.bind(store.voteBands.data)})
+    if (store.voteBands.data.models.length === 0) {
+      store.voteBands.data.fetch({success: store.voteBands.data.getModelVotes.bind(store.voteBands.data)})
+    }
   },
   updateList: function() {
     this.setState({bands: store.voteBands.data.toJSON()})
