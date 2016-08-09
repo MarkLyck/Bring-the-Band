@@ -8,6 +8,7 @@ nav {
   height: 75px;
   background: $header-color;
   z-index: 5;
+  transition: height 500ms;
   a {
     display: flex;
     align-items: center;
@@ -28,26 +29,46 @@ nav {
     height: 50px;
     width: auto;
     left: 50%;
-    transform: translateX(-50%);
-    top: 12.5px;
-  }
-  #nav-links {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    #logout-btn:hover {
-      background: $bad-color;
-    }
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
+
+#nav-links {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  #logout-btn {
+    &:hover {
+      background: $bad-color;
+    }
+    &::after {
+      content: 'Logout'
+    }
+  }
+  #top-bands::after {
+    content: 'Top Bands'
+  }
+  #login-btn::after {
+    content: 'Login'
+  }
+  #signup-btn::after {
+    content: 'Signup'
+  }
+}
+
+
+
+
 
 .search-form {
   width: 30%;
   display: flex;
   align-items: center;
+  transition: width 500ms;
   #search-bar {
     height: 35px;
-    width: 75%;
+    width: calc(100% - 30px);
     border-radius: 5px;
     border: 1px solid darken($header-color, 10%);
     background: darken($header-color, 5%);
@@ -62,7 +83,7 @@ nav {
     border: none;
     background: none;
     height: 100%;
-    width: 10%;
+    width: 30px;
     font-size: 1.2rem;
     &:hover {
       cursor: pointer;
@@ -116,6 +137,7 @@ nav {
       padding: 20px;
       margin: 0;
       text-transform: uppercase;
+      text-align: center;
     }
     #subtitle {
       color: #fff;
@@ -125,6 +147,7 @@ nav {
       margin: 0;
       text-transform: uppercase;
       margin-bottom: 50px;
+      text-align: center;
     }
     .wrapper {
       margin-bottom: 50px;
@@ -143,5 +166,47 @@ nav {
   #hero {
     background-size: cover;
     background-position: center right;
+  }
+}
+
+@media (max-width: 850px) {
+  nav {
+    height: 100px;
+  }
+  .form-modal {
+    top: 115px !important;
+  }
+  .search-form {
+    width: 40%;
+  }
+  #nav-links {
+    a {
+      width: 75px;
+    }
+    #top-bands::after {
+      content: ''
+    }
+    #logout-btn::after {
+      content: ''
+    }
+    #login-btn::after {
+      content: ''
+    }
+    #signup-btn::after {
+      content: ''
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  #hero {
+    .content {
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1rem;
+      }
+    }
   }
 }

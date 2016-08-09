@@ -480,7 +480,8 @@ nav {
   align-items: center;
   height: 75px;
   background: #333;
-  z-index: 5; }
+  z-index: 5;
+  transition: height 500ms; }
   nav a {
     display: flex;
     align-items: center;
@@ -498,22 +499,32 @@ nav {
     height: 50px;
     width: auto;
     left: 50%;
-    transform: translateX(-50%);
-    top: 12.5px; }
-  nav #nav-links {
-    height: 100%;
-    display: flex;
-    align-items: center; }
-    nav #nav-links #logout-btn:hover {
-      background: #da1354; }
+    top: 50%;
+    transform: translate(-50%, -50%); }
+
+#nav-links {
+  height: 100%;
+  display: flex;
+  align-items: center; }
+  #nav-links #logout-btn:hover {
+    background: #da1354; }
+  #nav-links #logout-btn::after {
+    content: "Logout"; }
+  #nav-links #top-bands::after {
+    content: "Top Bands"; }
+  #nav-links #login-btn::after {
+    content: "Login"; }
+  #nav-links #signup-btn::after {
+    content: "Signup"; }
 
 .search-form {
   width: 30%;
   display: flex;
-  align-items: center; }
+  align-items: center;
+  transition: width 500ms; }
   .search-form #search-bar {
     height: 35px;
-    width: 75%;
+    width: calc(100% - 30px);
     border-radius: 5px;
     border: 1px solid #1a1a1a;
     background: #262626;
@@ -527,7 +538,7 @@ nav {
     border: none;
     background: none;
     height: 100%;
-    width: 10%;
+    width: 30px;
     font-size: 1.2rem; }
     .search-form #search-btn:hover {
       cursor: pointer;
@@ -571,7 +582,8 @@ nav {
       background: rgba(0, 0, 0, 0.7);
       padding: 20px;
       margin: 0;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      text-align: center; }
     #hero .content #subtitle {
       color: #fff;
       font-weight: normal;
@@ -579,7 +591,8 @@ nav {
       padding: 20px;
       margin: 0;
       text-transform: uppercase;
-      margin-bottom: 50px; }
+      margin-bottom: 50px;
+      text-align: center; }
     #hero .content .wrapper {
       margin-bottom: 50px; }
       #hero .content .wrapper button {
@@ -592,6 +605,31 @@ nav {
   #hero {
     background-size: cover;
     background-position: center right; } }
+@media (max-width: 850px) {
+  nav {
+    height: 100px; }
+
+  .form-modal {
+    top: 115px !important; }
+
+  .search-form {
+    width: 40%; }
+
+  #nav-links a {
+    width: 75px; }
+  #nav-links #top-bands::after {
+    content: ""; }
+  #nav-links #logout-btn::after {
+    content: ""; }
+  #nav-links #login-btn::after {
+    content: ""; }
+  #nav-links #signup-btn::after {
+    content: ""; } }
+@media (max-width: 800px) {
+  #hero .content h1 {
+    font-size: 2rem; }
+  #hero .content h2 {
+    font-size: 1rem; } }
 .bands-page-container {
   position: relative; }
 

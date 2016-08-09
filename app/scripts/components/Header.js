@@ -49,16 +49,17 @@ const Header = React.createClass({
   render: function() {
     let navLinks = (
       <div id="nav-links">
-        <Link to="/top-bands"><i className="fa fa-star" aria-hidden="true"></i> Top Bands</Link>
-        <a onClick={this.showLogin}><i className="fa fa-sign-in" aria-hidden="true"></i> Login</a>
-        <a onClick={this.showSignup}><i className="fa fa-user-plus" aria-hidden="true"></i> Signup</a>
+        <Link to="/top-bands" id="top-bands"><i className="fa fa-star" aria-hidden="true"></i></Link>
+        <a onClick={this.showLogin} id="login-btn" ><i className="fa fa-sign-in" aria-hidden="true"></i></a>
+        <a onClick={this.showSignup} id="signup-btn" ><i className="fa fa-user-plus" aria-hidden="true"></i></a>
       </div>
     )
     if (localStorage.authtoken) {
+      console.log('user is logged in');
       navLinks = (
         <div id="nav-links">
-          <Link to="/top-bands"><i className="fa fa-star" aria-hidden="true"></i> Top Bands</Link>
-          <a href="#" id="logout-btn" onClick={store.session.logout.bind(store.session)}><i className="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+          <Link to="/top-bands" id="top-bands"><i className="fa fa-star" aria-hidden="true"></i></Link>
+          <a href="#" id="logout-btn" onClick={store.session.logout.bind(store.session)}><i className="fa fa-sign-out" aria-hidden="true"></i></a>
         </div>
       )
     }
