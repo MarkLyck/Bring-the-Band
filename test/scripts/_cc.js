@@ -36,7 +36,7 @@ describe('cc', function() {
     expect(cc.dateFormat(e, 'a')).to.equal('');
     expect(cc.dateFormat(e, '10200')).to.equal('10 / 20');
     expect(cc.dateFormat(e, ' / ')).to.equal('');
-    expect(cc.dateFormat(e, '2 / ')).to.equal('02 / ');    
+    expect(cc.dateFormat(e, '2 / ')).to.equal('02 / ');
   })
 
   it('should have a cvcFormat() method', () => {
@@ -44,15 +44,43 @@ describe('cc', function() {
     expect(cc.cvcFormat).to.be.a('function');
   })
 
+  it('cvcFormat() should format the input as "XXX" and only be numbers', () => {
+    expect(cc.cvcFormat('123')).to.equal('123');
+    expect(cc.cvcFormat('1234')).to.equal('124');
+    expect(cc.cvcFormat('a')).to.equal('');
+    expect(cc.cvcFormat('a123')).to.equal('123');
+    expect(cc.cvcFormat('6q35%$*&*@(%)')).to.equal('635');
+    expect(cc.cvcFormat(' 1 2 3   ')).to.equal('123');
+    expect(cc.cvcFormat('12')).to.equal('12');
+    expect(cc.cvcFormat('1')).to.equal('1');
+  })
+
   it('should have a checkPayment() method', () => {
     expect(cc).to.have.property('checkPayment')
     expect(cc.checkPayment).to.be.a('function');
   })
+
+  // This will fail, because Stripe is undefined. As it was imported directly in HTML.
+
+  // it('checkPayment() should validate a valid card', (done) => {
+  //   let card = {
+  //     number: 4242424242424242,
+  //     cvc: 123,
+  //     month: 7,
+  //     year: 17,
+  //     email: 'mark.lyck@gmail.com'
+  //   }
+  //   cc.checkPayment(card)
+  //     .then(() => {
+  //       done()
+  //     })
+  // })
 
   it('should have a chargeCard() method', () => {
     expect(cc).to.have.property('chargeCard')
     expect(cc.chargeCard).to.be.a('function');
   })
 
+  // Testing this would have the same problem as the above test
 
 })

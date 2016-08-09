@@ -28,11 +28,14 @@ describe('store', function() {
     expect(store).to.have.property('voteBands')
     expect(store.voteBands).to.have.property('data')
   })
-  it('should have a settings', () => {
+  it('should have a settings ', () => {
     expect(store).to.have.property('settings')
     expect(store.settings).to.have.property('appKey')
     expect(store.settings).to.have.property('appSecret')
     expect(store.settings).to.have.property('basicAuth')
+  })
+  it('should have albums', () => {
+    expect(store).to.have.property('albums')
   })
 })
 
@@ -80,6 +83,15 @@ describe('store.session', function() {
 
 
 describe('store.searchBands', function() {
+  it('should have a searchFor() method', () => {
+    expect(store.searchBands.data).to.have.property('searchFor')
+    expect(store.searchBands.data.searchFor).to.be.a('function');
+  })
+
+  it('should have a loadMore() method', () => {
+    expect(store.searchBands.data).to.have.property('loadMore')
+    expect(store.searchBands.data.loadMore).to.be.a('function');
+  })
 
 })
 
@@ -119,4 +131,30 @@ describe('store.voteBands', function() {
   it('should have a getModelVotes() method', () => {
     expect(store.voteBands.data).to.have.property('getModelVotes')
   })
+})
+
+
+
+
+describe('store.albums', function() {
+  it('should have a data property', () => {
+    expect(store.albums).to.have.property('data')
+  })
+  it('should have a fetching propery', () => {
+    expect(store.albums).to.have.property('fetching')
+  })
+  it('should have a getAlbumsFor() method', () => {
+    expect(store.albums.data).to.have.property('getAlbumsFor')
+    expect(store.albums.data.getAlbumsFor).to.be.a('function');
+  })
+
+  it('getAlbumsFor() should get an albumURI', (done) => {
+    store.albums.data.getAlbumsFor('06HL4z0CvFAxyc27GXpf02')
+      .then((uri) => {
+        if (uri.indexOf('spotify:album:') !== -1) {
+          done()
+        }
+      })
+  })
+
 })
